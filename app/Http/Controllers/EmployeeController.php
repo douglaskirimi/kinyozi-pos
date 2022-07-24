@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;    
+use App\Models\Employee;
+use App\Models\Category;      
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\UpdateEmployeeRequest;
@@ -18,8 +19,6 @@ class EmployeeController extends Controller
     {
         $employees = Employee::all();
         return view('pages.employees.index',['employees'=>$employees]);
-        Alert::warning('Warning Title', 'Warning Message');
-        // return view('pages.employees.index');
     }
 
     /**
@@ -29,6 +28,17 @@ class EmployeeController extends Controller
      */
     public function create(Request $request)
     {
+       
+       $validatedData = $request->validate([
+          'fname' => 'required',
+          'lname' => 'required',
+          'email' => 'required|unique:employees|max:255',
+          'phone' => 'required|unique:employees|max:255',
+          'specialization' => 'required',
+          'password' => 'required|min:6', 
+          // 'password_confirmation' => 'required|same:password|min:6',
+        ]);
+
        Employee::create($request->all());
        Alert::success('Employee Record','Employee record added successfully');
        return redirect()->route('show_employees');
@@ -45,15 +55,10 @@ class EmployeeController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
     public function show(Employee $employee)
-    {        
-       return view('pages.employees.add');
+    {  
+     $categories = Category::orderby("category_name","asc")->select('id','category_name')->get();
+       return view('pages.employees.add')->with('categories', $categories);
     }
 
     /**
@@ -66,7 +71,6 @@ class EmployeeController extends Controller
     {
         $data = $employee; 
         $id= $employee->id;
-        // die($data);
         return view('pages.employees.edit',compact('data','id'));
     }
 

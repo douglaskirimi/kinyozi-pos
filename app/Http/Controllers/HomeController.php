@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $data=Service::all();
         $array=array();
-        $array[]=   ['Service', 'Customers Per Day'];
+        $array[]=['Service', 'Customers Per Day'];
         foreach ($data as $dt) {
             $array[]=[$dt->service_name,(float)$dt->service_charges];
         }

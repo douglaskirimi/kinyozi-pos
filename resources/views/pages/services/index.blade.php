@@ -41,8 +41,8 @@
                  </a>
 
                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="margin-right:-70px;margin-top:10px; background-color:transparent!important!">
-                 <a class="dropdown-item" href="/services/edit/{{ $service->id }}"><i class="fa fa-edit" style="color: blue;background-color:transparent!important;">  Edit</i></a>
-                 <a class="dropdown-item" href="/services/delete/{{ $service->id }}"><i class="fa fa-trash" style="color: red;">&nbsp;Remove</i></a>
+                 <a class="dropdown-item" href="/services/edit/{{ $service->id }}"><i class="fa fa-edit" style="color: blue;background-color:transparent!important;font-size: 14px;">  Edit</i></a>
+                 <a class="dropdown-item" id="delete-confirm" href="/services/delete/{{ $service->id }}"><i class="fa fa-trash" style="color: red;font-size: 14px;">&nbsp;Remove</i></a>
                  <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                  </div>
                  </div>
@@ -56,9 +56,24 @@
                @endforelse
            </div>
          </div>
+         <script type="text/javascript">
+    $('.delete-confirm').on('click', function (event) {
+      event.preventDefault();
+      const url = $(this).attr('href');
+      swal({
+        title: 'Are you sure?',
+        text: 'This record and it`s details will be permanantly deleted!',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+    }).then(function(value) {
+        if (value) {
+            window.location.href = url;
+        }
+    });
+});
+         </script>
     </div>
   </div>
     </div>
-
-        @include('layouts.footers.auth')
+@include('layouts.footers.auth')
 @endsection

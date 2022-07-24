@@ -9,4 +9,10 @@ class Service extends Model
 {
     use HasFactory;
     protected $fillable = ['service_name','service_category','service_charges'];
+
+
+    // Service's Category
+    public function service() {
+    	return $this->hasOne(Category::class);
+    }
 }

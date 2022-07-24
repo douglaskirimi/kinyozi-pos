@@ -5,6 +5,27 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body bg-info text-light">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="card-title text-white mb-0">Customers</h4>
+                                    <span class="h3 text-white font-weight-bold mb-0">{{ App\Models\Customer::all()->count() }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-plain text-info rounded-circle shadow">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <a href="{{ route('customers_list') }}"><span class="text-white text-nowrap">View Customers</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-6">
+                    <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body bg-success text-light">
                             <div class="row">
                                 <div class="col">
@@ -22,7 +43,8 @@
                             </p>
                         </div>
                     </div>
-                </div>         <div class="col-xl-3 col-lg-6">
+                </div>         
+                <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body bg-primary text-light">
                             <div class="row">
@@ -41,27 +63,29 @@
                             </p>
                         </div>
                     </div>
-                </div>         
+                </div>  
+
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body bg-warning text-light">
                             <div class="row">
                                 <div class="col">
-                                    <h4 class="card-title text-white mb-0">Hooks</h4>
-                                    <span class="h3 text-white font-weight-bold mb-0">0</span>
+                                    <h4 class="card-title text-white mb-0">Categories</h4>
+                                    <span class="h3 text-white font-weight-bold mb-0">{{ App\Models\Category::all()->count() }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-plain text-warning rounded-circle shadow">
-                                        <i class="fas fa-link"></i>
+                                        <i class="fa fa-shopping-bag"></i>
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <a href=""><span class="text-white text-nowrap">View Hooks</span></a>
+                                <a href="{{ route('show_categories') }}"><span class="text-white text-nowrap">View Categories</span></a>
                             </p>
                         </div>
                     </div>
-                </div><div class="col-xl-3 col-lg-6">
+                </div>
+<!--                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body bg-danger text-light">
                             <div class="row">
@@ -80,7 +104,7 @@
                             </p>
                         </div>
                     </div>
-                </div> 
+                </div> --> 
 
          <!--        <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">

@@ -1,12 +1,12 @@
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark bg-dark" id="sidenav-main">
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md shadow-lg" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color:ivory!important;"></span>
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <b style="font-size: 25px;color:blue;padding: 3px 5px;">K-POS</b>
+            <b style="font-size: 25px;padding: 3px 5px;" class="text-info">K-POS</b>
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -20,9 +20,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                     <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0" style="color:limegreen;font-family: tahoma;">{{ __('Logged in:') }} <span style="color:dodgerblue;"> {{ auth()->user()->email }} </span>
+                        <h6 class="" style="color:limegreen;font-family: tahoma;">{{ __('Logged in:') }} <span style="color:dodgerblue;"> {{ auth()->user()->email }} </span>
                     </div>
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+      <!--               <a href="{{ route('profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
@@ -37,7 +37,7 @@
                     <a href="#" class="dropdown-item">
                         <i class="ni ni-support-16"></i>
                         <span>{{ __('Support') }}</span>
-                    </a>
+                    </a> -->
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" style="color: red;" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -83,40 +83,54 @@
                         <i class="ni ni-tv-2 text-info"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+                        <li class="nav-item">
+                    <a class="nav-link" href="{{route('customers_list')}}" role="button" aria-expanded="true">
+                        <i class="fa fa-user" style=""></i>
+                        <span class="nav-link-text">{{ __('Customers') }}</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('show_services')}}" role="button" aria-expanded="true">
-                        <i class="fa fa-shopping-bag text-light" style=""></i>
+                        <i class="fa fa-shopping-bag" style=""></i>
                         <span class="nav-link-text">{{ __('Services') }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('show_employees')}}" role="button" aria-expanded="true">
-                        <i class="fa fa-link text-light"></i>
-                        <span class="nav-link-text">{{ __('Hooks') }}</span>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{route('show_categories')}}" role="button" aria-expanded="true">
+                        <i class="fa fa-shopping-bag" style=""></i>
+                        <span class="nav-link-text">{{ __('Categories') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('show_employees')}}" role="button" aria-expanded="true">
-                        <i class="fa fa-users text-light" style=""></i>
+                        <i class="fa fa-users" style=""></i>
                         <span class="nav-link-text">{{ __('Employees') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('show_employees')}}" role="button" aria-expanded="true">
-                        <i class="fas fa-image text-light" style=""></i>
+                    <a class="nav-link" href="#" role="button" aria-expanded="true">
+                        <i class="fas fa-image" style=""></i>
                         <span class="nav-link-text" style="">{{ __('Gallery') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('show_employees')}}" role="button" aria-expanded="true">
-                        <i class="fa fa-user text-light" style=""></i>
+                    <a class="nav-link" href="#" role="button" aria-expanded="true">
+                        <i class="fa fa-user" style=""></i>
                         <span class="nav-link-text" style="">{{ __('Roles') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('show_employees')}}" role="button" aria-expanded="true">
-                        <i class="fa fa-file text-light" style=""></i>
+                    <a class="nav-link" href="#" role="button" aria-expanded="true">
+                        <i class="fa fa-file" style=""></i>
                         <span class="nav-link-text" style="">{{ __('Reports') }}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('make-transaction') }}" role="button" aria-expanded="true">
+                        <span class="nav-link-text btn btn-success" style="">
+                        <i class="fa fa-plus" style=""></i>
+                       {{  __('New Transaction') }}</span>
                     </a>
                 </li>
             </ul>

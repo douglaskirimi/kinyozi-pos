@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Employees')])
+@extends('layouts.app', ['title' => __('Customers')])
 
 @section('content')
  @include('layouts.headers.basic')
@@ -9,31 +9,46 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Edit Employee Details</h3>
+              <h3 class="mb-0">Edit Customer Details</h3>
             </div>
             <div class="text-right">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
+              <a href="{{ route('customers_list') }}" class="btn btn-md btn-primary">All Customers</a>
             </div>
- <form action="/empoyees/update/{{$id}}" method="POST" autocomplete="off">
+ <form action="/customers/update/{{$id}}" method="POST" autocomplete="off">
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputFname">First name</label>
-      <input type="text" class="form-control" name="fname" id="inputFname" placeholder="First name..." value="{{ $data->fname }}">
+      <label for="inputname">Name</label>
+      <input type="text" class="form-control" name="name" id="inputname" placeholder="First name..." value="{{ $data->name }}">
     </div>
-     <div class="form-group col-md-6">
-      <label for="inpuSname">Second name</label>
-      <input type="text" class="form-control" name="lname" id="inputSname" placeholder="Second name..." value="{{ $data->lname }}">
-    </div>
-  </div>
-   <div class="form-row">
      <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
       <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email..." value="{{ $data->email }}">
     </div>
+  </div>
+   <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="inputEmail4">Gender</label>
+      <input type="text" class="form-control" name="gender" id="inputEmail4" placeholder="Gender..." value="{{ $data->gender }}">
+    </div>
     <div class="form-group col-md-6">
       <label for="inputPhone">Phone</label>
-      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." value="{{ $data->phone }}">
+      <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." value="{{ $data->phone }}">
+    </div>
+  </div>
+   <div class="form-row">
+      <div class="form-group col-md-6">
+      <label for="specialization">Specialization</label>
+      <select class="form-control" name="specialization" id="specialization" value="{{ $data->specialization}}">
+        <option value="{{ $data->specialization}}">{{ $data->specialization}}</option>
+      <!-- Read Categories -->
+      @foreach($categories['data'] as $category)  
+        <option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
+      @endforeach
+      </select>      
+      @error('service_category')
+         <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
 <!--    <div class="form-row">

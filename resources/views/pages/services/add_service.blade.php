@@ -18,54 +18,43 @@
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="service-name">Service name</label>
-      <input type="text" class="form-control" name="service_name" placeholder="Service Name..."  required autofocus> @if ($errors->has('fname'))
-        <span class="invalid-feedback" role="alert">
-         <strong>{{ $errors->first('fname') }}</strong>
-        </span>
-        @endif
+      <label for="service-name">Service name <b>*</b></label>
+      <input type="text" class="form-control" name="service_name" placeholder="Service Name..."  value="{{ old('service_name') }}" required autofocus>
+      @error('service_name')
+         <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
      <div class="form-group col-md-6">
-      <label for="service-category">Service Category</label>
-      <input type="text" class="form-control" name="service_category" placeholder="Service Category"  required autofocus>
+      <label for="service-category">Service Category <b>*</b></label>
+      <select class="form-control" name="service_category" id="category_name" value="{{ old('service_category') }}">
+        <option value="">--Select Service Category --</option>
+      <!-- Read Categories -->
+      @foreach($categories['data'] as $category)  
+        <option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
+      @endforeach
+      </select>      
+      @error('service_category')
+         <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
    <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="charges">Service Charges</label>
-      <input type="text" class="form-control" name="service_charges" placeholder="Service Charges">
+      <label for="charges">Service Charges <b>*</b></label>
+      <input type="text" class="form-control" name="service_charges" value="{{ old('service_charges')}}" placeholder="Service Charges">
+      @error('service_charges')
+         <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPhone">Phone</label>
-      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." required autofocus>
-    </div>
+ <!--    <div class="form-group col-md-6">
+      <label for="inputPhone">Service Specialists</label>
+      <input type="text" class="form-control" name="specialists" id="" placeholder="Number of Specialists" required autofocus>
+    </div> -->
   </div>
 
   <div class="text-right">
      <button class="btn btn-primary">+ ADD SERVICE</button>
   </div>
-
-    <!--  <div class=""> 
-        <input type="submit" class="form-control btn btn-primary" name="add_employee" id="inputSname" value="+ ADD EMPLOYEE">     
-    </div> -->
-
-<!--   <div class="form-row">
-  <div class="form-group col-md-6">
-      <label for="inputSkill">Skills\Expertise</label>
-      <select name="skill" id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>Hair Cutting i.e all cuts categories</option>
-        <option>Hair Styling</option>
-        <option>Hair colouring</option>
-        <option>Face Scrubbing and Treatment</option>
-        <option>Beard Trimming</option>
-      </select>
-    </div> 
-  <div class="form-group col-md-6">
-      <label for="disabledTextInput">Service Charges</label>
-      <input type="text" class="form-control" name="tel" id="disabledTextInput" placeholder="Service cost/charge..." readonly="true">
-    </div>
-</div> -->
     </div>
 </form>       
            
@@ -74,6 +63,6 @@
     </div>
   </div>
         
-        <!-- @include('layouts.footers.auth') -->
+        @include('layouts.footers.auth')
     </div>
 @endsection

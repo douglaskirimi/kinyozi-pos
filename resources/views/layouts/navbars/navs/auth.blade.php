@@ -1,16 +1,16 @@
 <!-- Top navbar -->
-<nav class="navbar navbar-top navbar-expand-md navbar-dark bg-gradient-primary" id="navbar-main">
-    <div class="container-fluid">
+<nav class="navbar navbar-top navbar-expand-md navbar-gray bg-light-gray shadow-lg" id="navbar-main">
+    <div class="container-fluid bg-light-gray">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+        <a class="h3 mb-0 text-info text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
-                <div class="input-group input-group-alternative">
+                <div class="input-group input-group-alternative bg-white">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <span class="input-group-text text-dark"><i class="fas fa-search"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Search" type="text">
+                    <input class="form-control text-dark" style="color:red;" value="Search Anything..." placeholder="Search" type="text">
                 </div>
             </div>
         </form>

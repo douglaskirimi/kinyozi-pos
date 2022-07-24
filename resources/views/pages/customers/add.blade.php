@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Employees')])
+@extends('layouts.app', ['title' => __('Customers')])
 
 @section('content')
  @include('layouts.headers.basic')
@@ -9,79 +9,76 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">NEW EMPLOYEE</h3>
+              <h3 class="mb-0">New Customer</h3>
             </div>
             <div class="text-right">
               <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
             </div>
- <form action="{{ route('employee.create') }}" method="POST" autocomplete="on">
+ <form action="{{ route('customers.create') }}" method="POST" autocomplete="on">
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputFname">First name</label>
-      <input type="text" class="form-control" name="fname" id="inputFname" placeholder="First name..." value="{{ old('fname')}}"> 
-      @error('fname')
+      <label for="inputFname">Name <b class="text-danger">*</b></label>
+      <input type="text" class="form-control" name="name" id="inputname" placeholder="First name..."> 
+        @error('name')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
-     <div class="form-group col-md-6">
-      <label for="inputFname">Second name</label>
-      <input type="text" class="form-control" name="lname" id="inputSname" placeholder="Second name..." value="{{ old('lname')}}">
-        @error('lname')
+        <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email...">
+       @error('email')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
   </div>
    <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email..." value="{{ old('email')}}">
-       @error('email')
-         <span class="text-danger">{{ $message }}</span>
-      @enderror
+      <label for="inputEmail4">Gender</label>
+       <select class="form-control" name="gender">
+        <option value="">--Select Gender --</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="rns">Rather not say</option>         
+       </select>
+      <!-- <input type="text" class="form-control" name="gender" id="inputEmail4" placeholder="Customer Gender..."> -->
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPhone">Phone</label>
-      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." value="{{ old('phone')}}">
+      <label for="inputPhone">Phone <b class="text-danger">*</b></label>
+      <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number...">      
       @error('phone')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
-  </div>
-
-  <div class="form-row">
-   <div class="form-group col-md-6">
-    <label for="inputCategoryname">Employee Specialization <b class="text-danger"></b></label>
-    <select class="form-control" name="specialization" value="{{ old('specialization')}}">
-      <option value="">-- Select Specialization --</option>
-      <!-- Read Categories -->
-      @foreach($categories as $category)  
-      <<option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
-      @endforeach
-    </select>     
-     @error('specialization')
-         <span class="text-danger">{{ $message }}</span>
-      @enderror  
-    </div>
 
      <div class="form-group col-md-6">
-      <label for="inputpassword">Password</label>
-      <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Set password...">
-       @error('password')
+      <label for="specialization">Specialization <b class="text-danger">*</b></label>
+      <select class="form-control" name="specialization" id="specialization" value="{{ old('specialization') }}">
+        <option value="Not specified">--Select Specialization --</option>
+      <!-- Read Categories -->
+      @foreach($categories['data'] as $category)  
+        <option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
+      @endforeach
+      </select>      
+      @error('service_category')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
-<!--     <div class="form-group col-md-6">
-      <label for="inputPassword">Confirm password</label>
-      <input type="password" class="form-control" name="password_confirmation" id="inputPassword" placeholder="Confirm password...">
-       @error('password_confirmation')
-         <span class="text-danger">{{ $message }}</span>
-      @enderror
-    </div> -->
+
   </div>
+<!--    <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="inputpassword">Password</label>
+      <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Set password..." required autofocus>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword">Confirm password</label>
+      <input type="password" class="form-control" name="confirm-password" id="inputPassword" placeholder="Confirm password..." required autofocus>
+    </div>
+  </div -->
 
   <div class="text-right">
-     <button class="btn btn-primary">+ ADD EMPLOYEE</button>
+     <button class="btn btn-primary">Save</button>
   </div>
 
     <!--  <div class=""> 
@@ -113,6 +110,6 @@
     </div>
   </div>
         
-        @include('layouts.footers.auth')
+        <!-- @include('layouts.footers.auth') -->
     </div>
 @endsection
