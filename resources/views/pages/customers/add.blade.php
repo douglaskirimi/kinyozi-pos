@@ -8,11 +8,12 @@
         <div class="col">
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">New Customer</h3>
+            
+            <div class="text-right mt-4">
+              <a href="{{ route('customers_list') }}" class="btn btn-md btn-dark">All Customers</a>
             </div>
-            <div class="text-right">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
+            <div class="bg-transparent my-2 mt-4 mb-4">
+              <h3 class="mb-0 text-dark">New Customer</h3>
             </div>
  <form action="{{ route('customers.create') }}" method="POST" autocomplete="on">
     @csrf
@@ -51,11 +52,11 @@
       @enderror
     </div>
 
-     <div class="form-group col-md-6">
+<!--      <div class="form-group col-md-6">
       <label for="specialization">Specialization <b class="text-danger">*</b></label>
       <select class="form-control" name="specialization" id="specialization" value="{{ old('specialization') }}">
         <option value="Not specified">--Select Specialization --</option>
-      <!-- Read Categories -->
+    
       @foreach($categories['data'] as $category)  
         <option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
       @endforeach
@@ -63,7 +64,7 @@
       @error('service_category')
          <span class="text-danger">{{ $message }}</span>
       @enderror
-    </div>
+    </div> -->
 
   </div>
 <!--    <div class="form-row">
@@ -110,6 +111,5 @@
     </div>
   </div>
         
-        <!-- @include('layouts.footers.auth') -->
     </div>
 @endsection

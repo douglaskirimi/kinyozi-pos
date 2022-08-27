@@ -8,13 +8,14 @@
         <div class="col">
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">New Category</h3>
+            <div class="text-right mt-4">
+              <a href="{{ route('show_categories') }}" class="btn btn-md btn-dark">All Categories</a>
             </div>
-            <div class="text-right">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
-            </div>
- <form action="{{ route('category.create') }}" method="POST" autocomplete="on">
+            <div class="bg-transparent my-2 mt-4 mb-4">
+              <h3 class="mb-0 text-dark">New Category</h3>
+          </div>
+
+ <form action="{{ route('category.create') }}" method="POST" autocomplete="on" enctype="multipart/form-data">
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
@@ -79,7 +80,5 @@
          </div>
     </div>
   </div>
-        
-        <!-- @include('layouts.footers.auth') -->
-    </div>
+  </div>
 @endsection

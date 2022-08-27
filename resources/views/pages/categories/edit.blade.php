@@ -8,12 +8,13 @@
         <div class="col">
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
-            <div class="card-header border-0">
+        <div class="text-right mt-4">
+              <a href="{{ route('show_categories') }}" class="btn btn-md btn-primary">+ See all</a>
+            </div>
+            <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0">Edit Category</h3>
-            </div>
-            <div class="text-right">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
-            </div>
+          </div>
+
  <form action="/categories/update/{{$id}}" method="POST" autocomplete="on">
     @csrf
     <div class="form-row">
@@ -24,6 +25,22 @@
          <strong>{{ $errors->first('category_name') }}</strong>
         </span>
         @endif
+    </div>
+  </div>
+
+    <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="inputCategoryThumbnail"><a href="{{ asset('Categories Thumbnails') }}/{{$data->category_thumbnail}}">Old Thumbnail <b class="text-danger">{{ $data->thumbnail }}</b></a></label>
+    </div>
+  </div>  
+
+      <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="inputCategoryThumbnail">New Thumbnail <b class="text-danger"></b></label>
+       <input type="file" name="category_thumbnail">
+           @error('category_thumbnail')
+         <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
 
@@ -71,6 +88,6 @@
     </div>
   </div>
         
-        <!-- @include('layouts.footers.auth') -->
+        @include('layouts.footers.auth')
     </div>
 @endsection

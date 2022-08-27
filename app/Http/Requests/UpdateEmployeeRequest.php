@@ -24,9 +24,10 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'fname'=>'required',
-            'lname'=>'required',
+            'empl_name'=>'required',
+            'gender'=>'required',
             'email'=>'required',
+            'specialization'=>'required',
             'phone'=>'required'
         ];
     }

@@ -8,26 +8,33 @@
         <div class="col">
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">NEW EMPLOYEE</h3>
+            <div class="text-right mt-4">
+              <a href="{{ route('show_employees') }}" class="btn btn-md btn-dark">All Employees</a>
             </div>
-            <div class="text-right">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
-            </div>
+            <div class="bg-transparent my-2 mt-4 mb-4">
+              <h3 class="mb-0 text-dark">New Employee</h3>
+          </div>
+
  <form action="{{ route('employee.create') }}" method="POST" autocomplete="on">
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputFname">First name</label>
-      <input type="text" class="form-control" name="fname" id="inputFname" placeholder="First name..." value="{{ old('fname')}}"> 
-      @error('fname')
+      <label for="inputFname">Employee Name</label>
+      <input type="text" class="form-control" name="empl_name" id="empl_name" placeholder="First name..." value="{{ old('empl_name')}}"> 
+      @error('empl_name')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
      <div class="form-group col-md-6">
-      <label for="inputFname">Second name</label>
-      <input type="text" class="form-control" name="lname" id="inputSname" placeholder="Second name..." value="{{ old('lname')}}">
-        @error('lname')
+      <label for="gender">Gender</label>
+     <select class="form-control" name="gender" value="{{ old('gender')}}">
+      <option value="">-- Choose Your Gender --</option>
+      <!-- Read Categories -->
+      <option value='male'>Male</option>
+      <option value='female'>Female</option>
+      <option value='Rather Not Say'>Rather Not Say</option>
+    </select> 
+        @error('gender')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
@@ -56,7 +63,7 @@
       <option value="">-- Select Specialization --</option>
       <!-- Read Categories -->
       @foreach($categories as $category)  
-      <<option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
+      <option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
       @endforeach
     </select>     
      @error('specialization')
@@ -112,7 +119,5 @@
          </div>
     </div>
   </div>
-        
-        @include('layouts.footers.auth')
     </div>
 @endsection

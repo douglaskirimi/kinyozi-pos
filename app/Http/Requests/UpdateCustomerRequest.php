@@ -28,7 +28,6 @@ class UpdateCustomerRequest extends FormRequest
             'email'=>'required',
             'gender'=>'required',
             'phone'=>'required',
-            'specialization'=>'required'
         ];
     }
 }

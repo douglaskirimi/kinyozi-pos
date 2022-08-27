@@ -102,6 +102,7 @@ body
     text-align: left;
 
     color: #525f7f;
+    background-color:#e6ebec;
 }
 
 [tabindex='-1']:focus
@@ -5322,7 +5323,7 @@ input[type='button'].btn-block
 
     border: 1px solid transparent;
     border-radius: .375rem; 
-    background-color: transparent;
+    /*background-color: transparent;*/
 }
 .navbar-toggler:hover,
 .navbar-toggler:focus

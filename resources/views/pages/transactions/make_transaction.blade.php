@@ -8,18 +8,20 @@
         <div class="col">
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">Make New Transaction</h3>
+          <div class="text-right mt-4">
+              <a href="{{ route('all_transactions') }}" class="btn btn-md btn-dark">Transaction History</a>
             </div>
-            <div class="text-right">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
-            </div>
- <form action="{{ route('category.create') }}" method="POST" autocomplete="on">
+            <div class="bg-transparent my-2 mt-4 mb-4">
+              <h3 class="mb-0 text-dark">New Transaction Record</h3>
+          </div>
+
+
+ <form action="{{ route('confirm_payment') }}" autocomplete="on">
     @csrf
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCategoryname">Customer <b class="text-danger">*</b></label>
-      <select class="form-control" name="name" id="choose_customer">
+      <label for="inputCategoryname">Select Customer <b class="text-danger">*</b></label>
+      <select class="form-control" name="name" id="choose_customer" required>
       <option value="">--Choose Customer --</option>
       <!-- Read Categories -->
       @foreach($customers['data'] as $customer)  
@@ -34,10 +36,15 @@
 
   <div class="form-group col-md-6">
     <label for="inputCategoryname">Served By [Employee] <b class="text-danger"></b></label>
-    <select class="form-control" name="name">
-      <option value='0'>--- Select Employee ---</option>
-      <option value=''></option>  
-    </select>   
+    <select class="form-control" name="empl_name">
+      <option value=''>--- Select Employee ---</option>     @foreach($employees['data'] as $employee)  
+        <option value='{{ $employee->empl_name }}'>{{ $employee->empl_name }}</option>
+      @endforeach
+      </select>      
+      @error('empl_name')
+         <span class="text-danger">{{ $message }}</span>
+      @enderror 
+      </select>  
     </div>
   </div>
 
@@ -53,21 +60,16 @@
  -->
 
    <div class="form-row">
-
     <div class="form-group col-md-6">
-      <label for="inputCategoryname">Service <b class="text-danger"></b></label>
-      <select class="form-control" name="service_name" id="choose_service">
-      <option value='0'>-- Select Service--</option>
-      <option value=''></option>  
-      </select>
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="inputPhone">Customer's Phone</label>
-      <input type="number" class="form-control" name="phone" id="inputPhone" value="" placeholder="Phone Number e.g 07xxxxxxxx" readonly="readonly">
-      @error('phone')
+      <label for="inputCategoryname">Select Service <b class="text-danger"></b></label>
+      <select class="form-control" name="service_name" id="choose_service" required>
+      <option value='0'>-- Select Service--</option>@foreach($services['data'] as $service)  
+        <option value='{{ $service->service_name }}'>{{ $service->service_name }}</option>
+      @endforeach
+      </select>      
+      @error('service_name')
          <span class="text-danger">{{ $message }}</span>
-      @enderror
+      @enderror 
     </div>
   </div>
 

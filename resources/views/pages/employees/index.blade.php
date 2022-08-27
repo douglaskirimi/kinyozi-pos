@@ -21,20 +21,20 @@
                 <thead class="bg-primary text-light">
                     <tr class="align-items-center">
                     <th scope="col" data-sort="id">#</th>
-                    <th scope="col" data-sort="id">FIRST NAME</th>
-                    <th scope="col" data-sort="id">LAST NAME</th>
-                    <th scope="col" data-sort="email">EMAIL</th>
-                    <th scope="col" data-sort="phone">PHONE</th>
-                    <th scope="col" data-sort="specialization">SPECIALIZATION</th>
+                    <th scope="col" data-sort="id">Employee Name</th>
+                    <th scope="col" data-sort="email">Email</th>
+                    <th scope="col" data-sort="id">Gender</th>
+                    <th scope="col" data-sort="phone">Phone</th>
+                    <th scope="col" data-sort="specialization">Specialization</th>
                     <th scope="col" data-sort="action">Action</th>
                   </tr>
                 </thead>
                 @foreach($employees as $employee)
                 <tbody class="list">
                  <td class="">{{ $employee->id }}</td>
-                 <td class="">{{ $employee->fname }}</td>
-                 <td class="">{{ $employee->lname }}</td>
+                 <td class="">{{ $employee->empl_name }}</td>
                  <td class="">{{ $employee->email }}</td>
+                 <td class="">{{ $employee->gender }}</td>
                  <td class="">{{ $employee->phone }}</td>
                  <td class="">{{ $employee->specialization }}</td>       
 
@@ -65,5 +65,4 @@
   </div>
     </div>
 
-        @include('layouts.footers.auth')
 @endsection

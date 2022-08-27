@@ -82,7 +82,30 @@ Route::group(['middleware' => 'auth'], function () {
    Route::post('/categories/update/{category}','App\Http\Controllers\CategoryController@update')->name('category.update');
 
  // Transactions Pages Routes
+   Route::get('/transactions/list','App\Http\Controllers\TransactionController@index')->name('all_transactions');
+
    Route::get('/transactions','App\Http\Controllers\TransactionController@new_transaction')->name('make-transaction');
+
+      Route::get('/transactions/confirm_payment','App\Http\Controllers\TransactionController@confirm_payment')->name('confirm_payment');
+
+      Route::get('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
+
+    Route::get('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
+
+  Route::get('/transactions/edit/{transaction}','App\Http\Controllers\TransactionController@edit')->name('transaction.edit'); 
+
+   Route::get('/transactions/delete/{id}','App\Http\Controllers\TransactionController@delete')->name('transaction.delete');
+
+   Route::post('/transactions/update/{transaction}','App\Http\Controllers\TransactionController@update')->name('transaction.update');
+
+
+  Route::get('/generate/receipt/{transaction}', 'App\Http\Controllers\TransactionController@generatePDF')->name('generate_receipt');
+
+  // Route::get('/generate-pdf', 'App\Http\Controllers\TransactionController@generatePDF')->name('generate_receipt');
+
+
+
+
 
 
 

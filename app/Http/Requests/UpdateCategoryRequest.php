@@ -25,6 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'category_name'=>'required',
+            // 'category_thumbnail'=>'required',
         ];
     }
 }

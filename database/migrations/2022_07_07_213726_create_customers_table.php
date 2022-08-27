@@ -19,7 +19,6 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->string('gender');
             $table->bigInteger('phone');
-            $table->string('specialization');
             $table->timestamps();
         });
     }

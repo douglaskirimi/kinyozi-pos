@@ -1,8 +1,8 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md shadow-lg" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="color:ivory!important;"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
@@ -131,6 +131,13 @@
                         <span class="nav-link-text btn btn-success" style="">
                         <i class="fa fa-plus" style=""></i>
                        {{  __('New Transaction') }}</span>
+                    </a>
+                </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all_transactions') }}">
+                        <span class="nav-link-text" style="">
+                        <i class="ml-3" style=""></i>
+                       {{  __('Transaction History') }}</span>
                     </a>
                 </li>
             </ul>

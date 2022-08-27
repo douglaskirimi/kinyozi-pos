@@ -8,12 +8,13 @@
         <div class="col">
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">Edit Customer Details</h3>
-            </div>
-            <div class="text-right">
+        <div class="text-right mt-4">
               <a href="{{ route('customers_list') }}" class="btn btn-md btn-primary">All Customers</a>
             </div>
+            <div class="bg-transparent my-2 mt-4 mb-4">
+              <h3 class="mb-0">Edit Customer Details</h3>
+          </div>
+
  <form action="/customers/update/{{$id}}" method="POST" autocomplete="off">
     @csrf
     <div class="form-row">
@@ -36,12 +37,12 @@
       <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." value="{{ $data->phone }}">
     </div>
   </div>
-   <div class="form-row">
+<!--    <div class="form-row">
       <div class="form-group col-md-6">
       <label for="specialization">Specialization</label>
       <select class="form-control" name="specialization" id="specialization" value="{{ $data->specialization}}">
         <option value="{{ $data->specialization}}">{{ $data->specialization}}</option>
-      <!-- Read Categories -->
+
       @foreach($categories['data'] as $category)  
         <option value='{{ $category->category_name }}'>{{ $category->category_name }}</option>
       @endforeach
@@ -51,7 +52,7 @@
       @enderror
     </div>
   </div>
-<!--    <div class="form-row">
+ --><!--    <div class="form-row">
      <div class="form-group col-md-6">
       <label for="inputpassword">Password</label>
       <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Set password..." value="{{ $data->fname }}">
@@ -76,6 +77,5 @@
     </div>
   </div>
         
-        <!-- @include('layouts.footers.auth') -->
     </div>
 @endsection

@@ -30,8 +30,8 @@ class EmployeeController extends Controller
     {
        
        $validatedData = $request->validate([
-          'fname' => 'required',
-          'lname' => 'required',
+          'empl_name' => 'required',
+          'gender' => 'required',
           'email' => 'required|unique:employees|max:255',
           'phone' => 'required|unique:employees|max:255',
           'specialization' => 'required',
@@ -68,10 +68,12 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Employee $employee)
-    {
+    { 
+        $categories = Category::orderby("category_name","asc")->select('id','category_name')->get();
+
         $data = $employee; 
         $id= $employee->id;
-        return view('pages.employees.edit',compact('data','id'));
+        return view('pages.employees.edit',compact('data','id'))->with('categories',$categories);
     }
 
     /**

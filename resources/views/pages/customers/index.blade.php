@@ -25,7 +25,7 @@
                     <th scope="col" data-sort="email">Email</th>
                     <th scope="col" data-sort="phone">Gender</th>
                     <th scope="col" data-sort="join_date">Phone</th>
-                    <th scope="col" data-sort="join_date">Specialization</th>
+                    <!-- <th scope="col" data-sort="join_date">Specialization</th> -->
                     <th scope="col" data-sort="action">Action</th>
                   </tr>
                 </thead>
@@ -35,14 +35,7 @@
                  <td class="">{{ $customer->name }}</td>
                  <td class="">{{ $customer->email }}</td>
                  <td class="">{{ $customer->gender }}</td>
-                 <td class="">{{ $customer->phone }}</td>
-
-                  @if($customer->specialization=="Not specified") 
-                 <td class="text-danger">{{ $customer->specialization }}</td>  
-                 @else
-                 <td class="">{{ $customer->specialization }}</td>                 
-                 @endif
-
+                 <td class="">{{ $customer->phone }}</td>  
 
                  <td class="text-right">
                  <div class="dropdown">
@@ -69,5 +62,4 @@
   </div>
     </div>
 
-        @include('layouts.footers.auth')
 @endsection
