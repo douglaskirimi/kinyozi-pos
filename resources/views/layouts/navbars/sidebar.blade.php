@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <b style="font-size: 25px;padding: 3px 5px;" class="text-info">K-POS</b>
+            <b style="font-size: 25px;padding: 3px 5px;color: dodgerblue;" class="text-info">K-POS</b>
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
