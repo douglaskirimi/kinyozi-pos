@@ -5323,7 +5323,7 @@ input[type='button'].btn-block
 
     border: 1px solid transparent;
     border-radius: .375rem; 
-    /*background-color: transparent;*/
+    background-color: transparent;
 }
 .navbar-toggler:hover,
 .navbar-toggler:focus
@@ -5617,7 +5617,7 @@ input[type='button'].btn-block
 
 .navbar-light .navbar-toggler-icon
 {
-    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(0, 0, 0, 0.5)\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(30, 144, 255, 0.5)\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');
 }
 
 .navbar-light .navbar-text
@@ -5669,13 +5669,18 @@ input[type='button'].btn-block
 .navbar-dark .navbar-toggler
 {
     color: rgba(255, 255, 255, .95);
-    border-color: transparent;
+    border-color: dodgerblue;
 }
 
-.navbar-dark .navbar-toggler-icon
+/*.navbar-dark .navbar-toggler-icon
+{
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(255, 255, 255, 0.95)\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');
+}*/
+.navbar .navbar-toggler-icon
 {
     background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(255, 255, 255, 0.95)\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');
 }
+
 
 .navbar-dark .navbar-text
 {
