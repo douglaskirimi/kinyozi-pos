@@ -1,7 +1,7 @@
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <b style="font-size: 25px;color:floralwhite;box-shadow: 2px 2px 2px 3px floralwhite;padding: 3px 5px;">K-POS</b>
+            <b style="font-size: 25px;">K-POS</b>
             <!-- <img src="{{ asset('argon') }}/img/brand/white.png" /> -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,8 +19,8 @@
                     <h2>K-POS</h2>
                     <div class="col-6 collapse-close">
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                            <span></span>
-                            <span></span>
+                            <span class="bg-info"></span>
+                            <span class="bg-info"></span>
                         </button>
                     </div>
                 </div>
