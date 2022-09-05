@@ -14,7 +14,7 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                           <img alt="Image placeholder" src="{{ asset('argon') }}/img/douglas.JPG">
+                           <img alt="Image placeholder" src="{{ asset('argon') }}/img/douglas.jpg">
                         </span>
                     </div>
                 </a>
