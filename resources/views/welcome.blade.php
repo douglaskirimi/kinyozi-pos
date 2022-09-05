@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MPESA DARAJA APIS</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
 </head>
 <body>
   <div class="">
@@ -66,10 +68,11 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-<script src="{{ asset('assets/js/app.js') }}"></script>
+<!-- <script src="{{ asset('assets/js/app.js') }}"></script> -->
 
 <!-- Axios CND -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script type="text/javascript">
     document.getElementById('getAccessToken').addEventListener('click',(event) =>{
         event.preventDefault();
