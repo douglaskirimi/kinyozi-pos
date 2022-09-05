@@ -27,4 +27,4 @@ Route::post('/transactions/records','App\Http\Controllers\TransactionController@
 //     return view('welcome');
 // });
 
-Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+Route::post('/get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
