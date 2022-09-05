@@ -69,7 +69,7 @@
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script type="text/javascript">
     document.getElementById('getAccessToken').addEventListener('click',(event) =>{
-        event.preventDefault()
+        event.preventDefault();
 
         axios.post('get-token', {})
         .then((response) => {
