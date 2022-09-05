@@ -58,9 +58,9 @@
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                            <span></span>
-                            <span></span>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav" style="background-color:transparent!important;">
+                            <span class="bg-red"></span>
+                            <span class="bg-red"></span>
                         </button>
                     </div>
                 </div>
