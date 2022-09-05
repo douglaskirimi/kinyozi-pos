@@ -69,6 +69,8 @@ class TransactionController extends Controller
     $phone = $request->mpesa_number;
     $amount = $request->service_fees;
 
+    
+
 // session_destroy(); 
 // session_start();
     $curl = curl_init($url);
@@ -112,8 +114,8 @@ $json=json_decode($resp,true);
     $transaction->status = 'active';
     $transaction->save();
 
-return redirect('/transactions/records');
-// return redirect()->route('receive_stk_response');
+// return redirect('/transactions/records');
+return redirect()->route('receive_stk_response');
 // return redirect()->action([controllerPath::class, 'classMethod'], [' dataParameter' => 'if exist']);
    }
 

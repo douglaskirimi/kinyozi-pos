@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 
-Route::post('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
+// Route::post('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
 
-Route::post('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
+// Route::post('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
+// // });
+
+
+// Route::get('/mpesa-apis', function () {
+//     return view('welcome');
 // });
 
-
-Route::get('/mpesa-apis', function () {
-    return view('welcome');
-});
-
-Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+// Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');

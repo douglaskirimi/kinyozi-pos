@@ -94,9 +94,9 @@ Route::group(['middleware' => 'auth'], function () {
 
       Route::post('/transactions/confirm_payment','App\Http\Controllers\TransactionController@confirm_payment')->name('confirm_payment');
 
-      // Route::get('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
+      Route::post('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
 
-    // Route::get('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
+    Route::get('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
 
   Route::get('/transactions/edit/{transaction}','App\Http\Controllers\TransactionController@edit')->name('transaction.edit'); 
 
