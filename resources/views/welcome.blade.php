@@ -77,7 +77,7 @@
     document.getElementById('getAccessToken').addEventListener('click',(event) =>{
         event.preventDefault();
 
-        axios.post('/api/get-token', {})
+        axios.post('https://kinyozi-point-of-sale.herokuapp.com/api/get-token', {})
         .then((response) => {
             console.log(response.data); 
             document.getElementById('access_token').innerHTML = response.data.access_token

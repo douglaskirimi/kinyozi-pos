@@ -23,8 +23,8 @@ Route::post('/transactions/records','App\Http\Controllers\TransactionController@
 // });
 
 
-// Route::get('/mpesa-apis', function () {
-//     return view('welcome');
-// });
+Route::get('/mpesa-apis', function () {
+    return view('welcome');
+});
 
-Route::post('/get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
