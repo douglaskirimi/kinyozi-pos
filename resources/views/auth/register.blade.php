@@ -3,12 +3,12 @@
 @section('content')
     @include('layouts.headers.guest')
 
-    <div class="container mt--8 pb-5">
+    <div class="container mt--20 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
-                <div class="card bg-secondary shadow border-0">
-                    <div class="card-header">
+            <div class="col-lg-6 col-md-7">
+                <div class="card bg-secondary shadow border-0 my-5">
+                    <div class="card-header pb-5">
                         <h3 class="text-center mt-2 mb-4">K-POS | CREATE ACCOUNT</h3>
 
                         <!-- <div class="text-center text-muted mb-4"> -->
