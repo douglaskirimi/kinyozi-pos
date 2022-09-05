@@ -17,11 +17,11 @@ use App\Http\Controllers\payments\mpesa\MpesaApisTestController;
 
 // APIS TESTING - NOT PART OF THE APP
 
-Route::get('/mpesa-apis', function () {
-    return view('welcome');
-});
+// Route::get('/mpesa-apis', function () {
+//     return view('welcome');
+// });
 
-Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+// Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
 
 // Route::get('list', [AjaxController::class, 'index']);
 // Route::get('show-user', [AjaxController::class, 'show']);

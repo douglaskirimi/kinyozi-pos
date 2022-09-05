@@ -21,3 +21,10 @@ Route::post('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionCont
 
 Route::post('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
 // });
+
+
+Route::get('/mpesa-apis', function () {
+    return view('welcome');
+});
+
+Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
