@@ -3,16 +3,16 @@
 @section('content')
     @include('layouts.headers.guest')
 
-    <div class="container mt--8 pb-5">
+    <div class="container mt--20 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
-                <div class="card bg-white shadow border-0 my-5" style="">
+                <div class="card bg-white shadow border-0 my-5 bg-info" style="">
                     <div class="card-header bg-transparent pb-5">
                         <div class="text-center mt-2 mb-3"><h3>{{ __('K-POS | WELCOME AGAIN') }}</h3></div>
 
                         <div class="text-center text-muted mb-4">
                             <small>
-                                    <h4>Sign in with <strong style="color:dodgerblue;">your account info.</strong></h4>
+                                    <h4>Login in with <strong style="color:dodgerblue;">your account info.</strong></h4>
                             </small>
                         </div>
                             

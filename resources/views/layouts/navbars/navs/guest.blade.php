@@ -33,16 +33,16 @@
                         <span class="nav-link-inner--text">{{ __('Dashboard') }}</span>
                     </a>
                 </li> -->
-                <li class="nav-item">
+              <!--   <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="{{ route('register') }}">
                         <i class="ni ni-circle-08"></i>
                         <span class="nav-link-inner--text">{{ __('Register') }}</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="{{ route('login') }}">
-                        <i class="ni ni-key-25"></i>
-                        <span class="nav-link-inner--text">{{ __('Login') }}</span>
+                        <i class="ni ni-key-25 text-info"></i>
+                        <span class="nav-link-inner--text text-info">{{ __('Login') }}</span>
                     </a>
                 </li>
           <!--       <li class="nav-item">

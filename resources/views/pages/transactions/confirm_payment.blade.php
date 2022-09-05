@@ -15,7 +15,7 @@
               <h3 class="mb-0 text-dark">Confirm Transaction Details</h3>
           </div>
 
- <form action="{{ route('send_stk') }}" autocomplete="on">
+ <form action="{{ route('send_stk') }}" autocomplete="on" method="post">
     @csrf
 
     <div class="card">

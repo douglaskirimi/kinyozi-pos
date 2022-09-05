@@ -17732,7 +17732,7 @@ a.btn-icon-only
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before
 {
-    border-color: #5e72e4;
+    border-color: red;
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after

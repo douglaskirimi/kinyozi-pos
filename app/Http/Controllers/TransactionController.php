@@ -34,16 +34,7 @@ class TransactionController extends Controller
      $employees['data'] = Employee::orderby("empl_name","asc")->select('id','empl_name')->get();
         return view('pages.transactions.make_transaction')->with('customers', $customers)->with('employees',$employees)->with('services',$services);
     }
-
-   public function getServices($customerid=0){
-
-     // Fetch Employees by Departmentid
-     $ServicesData['data'] = Employees::orderby("name","asc")->select('id','name')->where('department',$departmentid)->get();
-
-     return response()->json($empData);
-
-   }
-
+    
    public function confirm_payment(Request $request){
     $data = $request;
     $name = $request->name; 

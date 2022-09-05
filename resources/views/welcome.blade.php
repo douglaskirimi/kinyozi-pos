@@ -1,22 +1,87 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MPESA DARAJA APIS</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
+</head>
+<body>
+  <div class="">
+    <div class="card-header">
+      <h3 class="mt-4 mx-auto text-success">MPESA ONLINE PAYMENTS</h3>
+  </div>
+  <div class="card-body">
+    <div class="card-header">Request Access Token</div>
+    <form action="{{ route('get-token') }}" method="post">
+        @csrf
+   <div class="form-group col-md-6">
+       <button type="submit" name="" class="btn btn-primary form-control" id="getAccessToken">Request Access Token</button>
+   </div>
+    <div class="col-md-8">
+       <p>Access Token: <span class="text-primary" id="access_token"></span></p>
+   </div>
+  </form>
+ </div>
 
-@section('content')
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-        <div class="container">
-            <div class="header-body text-center mt-7 mb-7">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Welcome to K-pos.') }}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
+
+  <div class="card-body">
+    <h4>Simulate Transaction</h4>
+    <form action="" method="post">
+        @csrf
+    <div class="form-group col-md-6">
+      <label for="inputCategoryname">Amount</label>
+      <input type="text" class="form-control" name="">
     </div>
 
-    <div class="container mt--10 pb-5"></div>
-@endsection
+       <div class="form-group col-md-6">
+      <label for="inputCategoryname">Phone Number</label>
+      <input type="text" class="form-control" name="">
+    </div>
+
+   <div class="form-group col-md-6">
+       <input type="button" name="" class="btn btn-success form-control" value="Simulate">
+   </div>
+  </form>
+ </div>
+
+
+
+
+  <div class="card-body">
+    <h4>Generate Access Token</h4>
+    <form action="" method="post">
+        @csrf
+    <div class="form-group col-md-6">
+      <label for="inputCategoryname">Access Token</label>
+      <input type="text" class="form-control" name="">
+    </div>
+
+   <div class="form-group col-md-6">
+       <input type="button" name="" class="btn btn-success form-control" value="Generate">
+   </div>
+  </form>
+ </div>
+</div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+<script src="{{ asset('assets/js/app.js') }}"></script>
+<script type="text/javascript">
+    document.getElementById('getAccessToken').addEventListener('click',(event) =>{
+        event.preventDefault()
+
+        axios.post('get-token', {})
+        .then((response) => {
+            console.log(response.data); 
+            document.getElementById('access_token').innerHTML = response.data.access_token
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    })
+</script>
+
+
+</body>
+</html>

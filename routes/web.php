@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\payments\mpesa\MpesaApisTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::get('list', [AjaxController::class, 'index']);
-Route::get('show-user', [AjaxController::class, 'show']);
+// APIS TESTING - NOT PART OF THE APP
+
+Route::get('/mpesa-apis', function () {
+    return view('welcome');
+});
+
+Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+
+// Route::get('list', [AjaxController::class, 'index']);
+// Route::get('show-user', [AjaxController::class, 'show']);
 
 
 
@@ -86,11 +92,11 @@ Route::group(['middleware' => 'auth'], function () {
 
    Route::get('/transactions','App\Http\Controllers\TransactionController@new_transaction')->name('make-transaction');
 
-      Route::get('/transactions/confirm_payment','App\Http\Controllers\TransactionController@confirm_payment')->name('confirm_payment');
+      Route::post('/transactions/confirm_payment','App\Http\Controllers\TransactionController@confirm_payment')->name('confirm_payment');
 
-      Route::get('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
+      // Route::get('/transactions/mpesa/send_stk','App\Http\Controllers\TransactionController@send_stk')->name('send_stk');
 
-    Route::get('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
+    // Route::get('/transactions/records','App\Http\Controllers\TransactionController@stk_response')->name('receive_stk_response');
 
   Route::get('/transactions/edit/{transaction}','App\Http\Controllers\TransactionController@edit')->name('transaction.edit'); 
 

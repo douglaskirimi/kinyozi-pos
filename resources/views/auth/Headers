@@ -1,0 +1,18 @@
+Headers
+Key: Authorization
+Value: Basic SjYzWUM2cVpaVjMwUUlDdFVoZjVqWXJ6QW5KRGNlSWE6dmM2WjEyNHIyb214M1l6bg==
+
+Body
+  {
+    "BusinessShortCode": 174379,
+    "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIwODMwMTgwMzIx",
+    "Timestamp": "20220830180321",
+    "TransactionType": "CustomerPayBillOnline",
+    "Amount": 10,
+    "PartyA": 254758319193,
+    "PartyB": 174379,
+    "PhoneNumber": 254758319193,
+    "CallBackURL": "https://mydomain.com/path",
+    "AccountReference": "TechSols",
+    "TransactionDesc": "Tech Services" 
+  }

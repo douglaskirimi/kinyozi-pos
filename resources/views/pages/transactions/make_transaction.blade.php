@@ -16,7 +16,7 @@
           </div>
 
 
- <form action="{{ route('confirm_payment') }}" autocomplete="on">
+ <form action="{{ route('confirm_payment') }}" autocomplete="on" method="post">
     @csrf
   <div class="form-row">
     <div class="form-group col-md-6">
