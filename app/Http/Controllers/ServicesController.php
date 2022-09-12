@@ -17,8 +17,8 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return view('pages.services.index2',['services'=>$services]);
+        $services = Service::all();    
+        return view('pages.services.index',['services'=>$services]);
         Alert::warning('Warning Title', 'Warning Message');
     }
 

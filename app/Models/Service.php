@@ -12,7 +12,8 @@ class Service extends Model
 
 
     // Service's Category
-    public function service() {
-    	return $this->hasOne(Category::class);
+    public function category() {
+    	// return $this->hasOne(Category::class,'category_name','service_category');
+        return $this->belongsTo('App\Models\Category','service_category','category_name');
     }
 }

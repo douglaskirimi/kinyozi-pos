@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>MPESA DARAJA APIS</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
@@ -15,7 +16,7 @@
   </div>
   <div class="card-body">
     <div class="card-header">Request Access Token</div>
-    <form action="{{ route('get-token') }}" method="post">
+    <form action="{{ route('generateAccessToken') }}" method="post">
         @csrf
    <div class="form-group col-md-6">
        <button type="submit" name="" class="btn btn-primary form-control" id="getAccessToken">Request Access Token</button>
@@ -77,10 +78,10 @@
     document.getElementById('getAccessToken').addEventListener('click',(event) =>{
         event.preventDefault();
 
-        axios.post('get-token', {})
+        axios.post('/get-token', {})
         .then((response) => {
             console.log(response.data); 
-            document.getElementById('access_token').innerHTML = response.data.access_token
+            document.getElementById('access_token').innerHTML = response.data
         })
         .catch((error) => {
             console.log(error);
@@ -88,6 +89,6 @@
     })
 </script>
 
-
+<button><a href="/api/v1/mfc/stk/push">Send Stk</button>
 </body>
 </html>

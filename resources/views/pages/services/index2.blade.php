@@ -15,12 +15,12 @@
               <a href="{{ route('add_service') }}" class="btn btn-md btn-info">+ Add Service</a>
             </div>
     </div>
-      <div class="row d-flex justify-content-start my-3">
+      <div class="row d-flex justify-content-space-around my-3 mx-3">
         @foreach($services as $service)
-        <div class="service-card my-2 mx-2 pb-3" style="width: 18rem;box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+        <div class="service-card my-2 mx-2 pb-3" style="width: 12rem;box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
             <div class="hover_color_bubble"></div>
             <div style="height:200px; width:18rem;overflow:hidden;">
-                <img class="card-img-top" src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg" alt="Card image cap">
+                <img class="card-img-top" src="" alt="Card image cap">
             </div>
             <div class="card-body text-white">
                 <h3 class="card-title">{{ $service->service_name }}</</h3>

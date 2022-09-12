@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\payments\mpesa\MpesaTransactionsController;
+use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,21 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+
+Route::post('v1/access/token', 'MpesaController@generateAccessToken');
+Route::post('v1/hlab/stk/push', 'MpesaController@customerMpesaSTKPush');
+
+
+
+
+Route::get('/mpesa-apis', function () {
+    return view('welcome');
+});
+
+
+Route::post('/get-token', [MpesaTransactionsController::class, 'getAccessToken'])->name('generateAccessToken');
+
+
+Route::post('/mpesa/stkPush/', [MpesaTransactionsController::class, 'stkPush'])->name('stkPush');
+
+Route::get('/Mpesa/payment/responses',[MpesaResponsesController::class, 'stkResponseMsg'])->name('stkResponseMsg');

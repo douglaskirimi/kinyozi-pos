@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\payments\mpesa\MpesaApisTestController;
+use App\Http\Controllers\payments\mpesa\MpesaTransactionsController;
+use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,17 @@ use App\Http\Controllers\payments\mpesa\MpesaApisTestController;
 // });
 
 // Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
+// Route::post('get-token',[MpesaController::class,'generateAccessToken'])->name('get-token');
 
 // Route::get('list', [AjaxController::class, 'index']);
 // Route::get('show-user', [AjaxController::class, 'show']);
 
+
+// Route::post('/get-token', [MpesaTransactionsController::class, 'getAccessToken'])->name('generateAccessToken');
+
+
+# Route::post('/mpesa/stkPush/', [MpesaTransactionsController::class, 'stkPush'])->name('stkPush');
+// Route::get('/Mpesa/payment/responses',[MpesaTransactionsController::class, 'transactionResponse'])->name('mpesa-response');
 
 
 

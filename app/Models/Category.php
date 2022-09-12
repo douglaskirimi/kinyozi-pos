@@ -9,4 +9,10 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable = ['category_name','category_thumbnail'];
+
+
+    public function services() 
+    {
+    	return $this->hasMany('App\Models\Service',"service_category","category_name");
+    }
 }
