@@ -10,7 +10,6 @@ class MPESAResponsesController extends Controller
 {
 
     public function stkResponseMsg(Request $request) {
-        dd($request);
         if (!empty($request)) {
         $stkResponse = $request->getContent();
         $response = json_decode($stkResponse, true);
