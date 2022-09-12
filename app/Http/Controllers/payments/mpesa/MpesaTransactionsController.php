@@ -76,8 +76,8 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        if(curl_exec($curl)) {   
-            $curl_response = curl_exec();
+        if($curl_response = curl_exec($curl)) { 
+        dd($curl_response);       	
             $stkPullResponse = json_decode($curl_response);
             // dd($stkPullResponse);
             $stkResCode  = $stkPullResponse->ResponseCode;
