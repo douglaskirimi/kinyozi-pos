@@ -25,8 +25,6 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
         $access_token=json_decode($curl_response);
-        Log::debug($access_token->access_token);
-        // dd($access_token->access_token);
         if (!empty($access_token)) {
          return $access_token->access_token;
         } 
@@ -81,7 +79,7 @@ class MpesaTransactionsController extends Controller
         $stkPullResponse = json_decode($curl_response);
         $stkResCode  = $stkPullResponse->ResponseCode;
 
-        Log::info($stkResCode);
+        // Log::info($stkResCode);
         if ($stkResCode == 0) {
            // return view('/pages.transactions.completeTransaction',compact('data'))->with('data',$data);
         	return redirect()->action([MpesaResponsesController::class, 'stkResponseMsg']);
@@ -99,7 +97,7 @@ class MpesaTransactionsController extends Controller
         $stkCallback = $body['stkCallback'];
         $CheckoutRequestID = $stkCallback['CheckoutRequestID'];
         $ResultCode = $stkCallback['ResultCode'];
-        Log::info($ResultCode);
+        // Log::info($ResultCode);
         if ($ResultCode == 0) {
             $CallbackMetadata = $stkCallback['CallbackMetadata'];
             $Items = collect($CallbackMetadata['Item']);

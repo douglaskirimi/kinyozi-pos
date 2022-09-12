@@ -17,7 +17,7 @@ class MPESAResponsesController extends Controller
         $CheckoutRequestID = $stkCallback['CheckoutRequestID'];
         $ResultCode = $stkCallback['ResultCode'];
 
-        Log::info($ResultCode);
+        // Log::info($ResultCode);
         dd($ResultCode);
     }
 
