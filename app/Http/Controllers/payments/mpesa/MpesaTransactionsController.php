@@ -50,8 +50,8 @@ class MpesaTransactionsController extends Controller
         $customer_payment_number = '254' . $phone;
         $service_fees = $request->service_fees;
         $data = $request;
+        // dd($data);
 
-        // dd($customer_payment_number);
 
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $curl = curl_init();
@@ -76,19 +76,22 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        $curl_response = curl_exec($curl);
-        dd($curl_response);
-        // $curl_response = curl_exec($curl);
-        //     dd($curl_response);
-        //     $stkPullResponse = json_decode($curl_response);
-        //     $stkResCode  = $stkPullResponse->ResponseCode;
-        // if ($stkResCode == 0) {
+        if($curl_response = curl_exec($curl)) {         	
+            $stkPullResponse = json_decode($curl_response);
+            $stkResCode  = $stkPullResponse->ResponseCode;
+
+        if ($stkResCode == 0) {
+        	return $stkPullResponse->CustomerMessage;
            // return view('/pages.transactions.completeTransaction',compact('data'))->with('data',$data);
         	// return redirect()->action([MpesaResponsesController::class, 'stkResponseMsg']);
-        // }
-        // else{
-        //     return null;
-        // }
+        }
+        else{
+            return null;
+        }
+     }
+     else{
+     	return "Error 109";
+     }
  
     }
 

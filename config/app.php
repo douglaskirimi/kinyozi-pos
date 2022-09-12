@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://kinyozi-point-of-sale.herokuapp.com'),
+    'url' => env('APP_URL', 'https://kinyozi-point-of-sale.herokuapp.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
