@@ -50,8 +50,6 @@ class MpesaTransactionsController extends Controller
         $customer_payment_number = '254' . $phone;
         $service_fees = $request->service_fees;
         $data = $request;
-        // dd($data);
-
 
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $curl = curl_init();
@@ -76,8 +74,7 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        if($curl_response = curl_exec($curl)) { 
-        dd($curl_response);       	
+        if($curl_response = curl_exec($curl)) {     	
             $stkPullResponse = json_decode($curl_response);
             // dd($stkPullResponse);
             $stkResCode  = $stkPullResponse->ResponseCode;
