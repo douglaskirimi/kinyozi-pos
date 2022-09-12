@@ -51,7 +51,7 @@ class MpesaTransactionsController extends Controller
         $service_fees = $request->service_fees;
         $data = $request;
 
-        dd($customer_payment_number);
+        // dd($customer_payment_number);
 
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $curl = curl_init();
@@ -76,13 +76,10 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        if($curl_response = curl_exec($curl)) {     	
+        if($curl_response = curl_exec($curl)) {  
+            dd($curl_response);
             $stkPullResponse = json_decode($curl_response);
-            // dd($stkPullResponse);
             $stkResCode  = $stkPullResponse->ResponseCode;
-            // dd($stkResCode);
-
-        // Log::info($stkResCode);
         if ($stkResCode == 0) {
            // return view('/pages.transactions.completeTransaction',compact('data'))->with('data',$data);
         	return redirect()->action([MpesaResponsesController::class, 'stkResponseMsg']);
