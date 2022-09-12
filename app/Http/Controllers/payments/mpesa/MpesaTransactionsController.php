@@ -75,9 +75,10 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        $curl_response = curl_exec($curl);
-        $stkPullResponse = json_decode($curl_response);
-        $stkResCode  = $stkPullResponse->ResponseCode;
+        if (curl_exec($curl)) {        
+        	$curl_response = curl_exec($curl);
+            $stkPullResponse = json_decode($curl_response);
+            $stkResCode  = $stkPullResponse->ResponseCode;
 
         // Log::info($stkResCode);
         if ($stkResCode == 0) {
@@ -87,6 +88,11 @@ class MpesaTransactionsController extends Controller
         else{
             return null;
         }
+     }
+     else{
+     	return "Error 109";
+     }
+ 
     }
 
     public function transactionResponse(Request $request) {
