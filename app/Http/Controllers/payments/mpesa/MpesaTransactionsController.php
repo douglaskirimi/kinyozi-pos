@@ -65,7 +65,7 @@ class MpesaTransactionsController extends Controller
             'PartyA' => $customer_payment_number, // replace this with your phone number
             'PartyB' => 174379,
             'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-            'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/' . 'api/Mpesa-payment/responses',
+            'CallBackURL' => 'http://kinyozi-point-of-sale.herokuapp.com/' . 'api/Mpesa-payment/responses',
             'AccountReference' => "Glitter Barbershop",
             'TransactionDesc' => "Testing stk push on sandbox"
         ];
