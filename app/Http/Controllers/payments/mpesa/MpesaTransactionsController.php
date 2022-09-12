@@ -25,6 +25,7 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
         $access_token=json_decode($curl_response);
+        // dd($access_token->access_token);
         if (!empty($access_token)) {
          return $access_token->access_token;
         } 
@@ -66,7 +67,7 @@ class MpesaTransactionsController extends Controller
             'PartyA' => $customer_payment_number, // replace this with your phone number
             'PartyB' => 174379,
             'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-            'CallBackURL' => 'http://kinyozi-point-of-sale.herokuapp.com/api/Mpesa/payment/responses',
+            'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/' . 'api/Mpesa/payment/responses',
             'AccountReference' => "Glitter Barbershop",
             'TransactionDesc' => "Testing stk push on sandbox"
         ];
@@ -75,10 +76,12 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-        if (curl_exec($curl)) {        
-        	$curl_response = curl_exec($curl);
+        if($curl_response = curl_exec($curl)) { 
+        	
             $stkPullResponse = json_decode($curl_response);
+            // dd($stkPullResponse);
             $stkResCode  = $stkPullResponse->ResponseCode;
+            // dd($stkResCode);
 
         // Log::info($stkResCode);
         if ($stkResCode == 0) {
@@ -95,57 +98,56 @@ class MpesaTransactionsController extends Controller
  
     }
 
-    public function transactionResponse(Request $request) {
-    {
-        $stkResponse = $request->getContent();
-        $response = json_decode($stkResponse, true);
-        $body = $response['Body'];
-        $stkCallback = $body['stkCallback'];
-        $CheckoutRequestID = $stkCallback['CheckoutRequestID'];
-        $ResultCode = $stkCallback['ResultCode'];
-        // Log::info($ResultCode);
-        if ($ResultCode == 0) {
-            $CallbackMetadata = $stkCallback['CallbackMetadata'];
-            $Items = collect($CallbackMetadata['Item']);
-            $phone_number = collect($Items->firstWhere('Name', 'PhoneNumber'))->get('Value');
-            $transaction_code = collect($Items->firstWhere('Name', 'MpesaReceiptNumber'))->get('Value');
-            $PhoneNumber = ltrim($phone_number, '254');
-            $PhoneNumber = '0' . $PhoneNumber;
-            $t = MpesaTransaction::where('CheckoutRequestID', $CheckoutRequestID)->where('status', 'Push Sent')->first();
-            if ($t) {
-                $t->update([
-                    'status' => 'Paid Complete',
-                    'MpesaReceiptNumber' => $transaction_code,
-                ]);
-                $order = $t->plan_order;
-                $response_data = [
-                    "MerchantRequestID" => $stkCallback['MerchantRequestID'],
-                    "CheckoutRequestID" => $CheckoutRequestID,
-                    "ResultCode" => $stkCallback['ResultCode'],
-                    "ResultDesc" => $stkCallback['ResultDesc']
-                ];
-                MpesaResponseReceived::dispatch($order, $order->user, $response_data);
+    // public function transactionResponse(Request $request) {
+    // {
+    //     $stkResponse = $request->getContent();
+    //     $response = json_decode($stkResponse, true);
+    //     $body = $response['Body'];
+    //     $stkCallback = $body['stkCallback'];
+    //     $CheckoutRequestID = $stkCallback['CheckoutRequestID'];
+    //     $ResultCode = $stkCallback['ResultCode'];
+    //     // Log::info($ResultCode);
+    //     if ($ResultCode == 0) {
+    //         $CallbackMetadata = $stkCallback['CallbackMetadata'];
+    //         $Items = collect($CallbackMetadata['Item']);
+    //         $phone_number = collect($Items->firstWhere('Name', 'PhoneNumber'))->get('Value');
+    //         $transaction_code = collect($Items->firstWhere('Name', 'MpesaReceiptNumber'))->get('Value');
+    //         $PhoneNumber = ltrim($phone_number, '254');
+    //         $PhoneNumber = '0' . $PhoneNumber;
+    //         $t = MpesaTransaction::where('CheckoutRequestID', $CheckoutRequestID)->where('status', 'Push Sent')->first();
+    //         if ($t) {
+    //             $t->update([
+    //                 'status' => 'Paid Complete',
+    //                 'MpesaReceiptNumber' => $transaction_code,
+    //             ]);
+    //             $order = $t->plan_order;
+    //             $response_data = [
+    //                 "MerchantRequestID" => $stkCallback['MerchantRequestID'],
+    //                 "CheckoutRequestID" => $CheckoutRequestID,
+    //                 "ResultCode" => $stkCallback['ResultCode'],
+    //                 "ResultDesc" => $stkCallback['ResultDesc']
+    //             ];
+    //             MpesaResponseReceived::dispatch($order, $order->user, $response_data);
 
-                $data = [
-                    'domain' => $order->domain,
-                    'name' => $order->business_name,
-                    'order' => $order->id,
-                ];
+    //             $data = [
+    //                 'domain' => $order->domain,
+    //                 'name' => $order->business_name,
+    //                 'order' => $order->id,
+    //             ];
 
-                return   PaymentHandledEvent::dispatch($data);
-            }
-        } else {
-            $data = [
-                "MerchantRequestID" => $stkCallback['MerchantRequestID'],
-                "CheckoutRequestID" => $CheckoutRequestID,
-                "ResultCode" => $stkCallback['ResultCode'],
-                "ResultDesc" => $stkCallback['ResultDesc']
-            ];
-            $tr = MpesaTransaction::where('CheckoutRequestID', $CheckoutRequestID)->first();
-            $tr->update(['status' => 'Payment Failed']);
-            return MpesaPaymentFailed::dispatch($data, $CheckoutRequestID);
-        }
+    //             return   PaymentHandledEvent::dispatch($data);
+    //         }
+    //     } else {
+    //         $data = [
+    //             "MerchantRequestID" => $stkCallback['MerchantRequestID'],
+    //             "CheckoutRequestID" => $CheckoutRequestID,
+    //             "ResultCode" => $stkCallback['ResultCode'],
+    //             "ResultDesc" => $stkCallback['ResultDesc']
+    //         ];
+    //         $tr = MpesaTransaction::where('CheckoutRequestID', $CheckoutRequestID)->first();
+    //         $tr->update(['status' => 'Payment Failed']);
+    //         return MpesaPaymentFailed::dispatch($data, $CheckoutRequestID);
+    //     }
+    // }
+
     }
-
-    }
-}

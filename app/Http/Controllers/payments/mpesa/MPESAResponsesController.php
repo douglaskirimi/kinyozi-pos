@@ -10,15 +10,21 @@ class MPESAResponsesController extends Controller
 {
 
     public function stkResponseMsg(Request $request) {
+        dd($request);
+        if (!empty($request)) {
         $stkResponse = $request->getContent();
         $response = json_decode($stkResponse, true);
-        $body = $response['Body'];
+        // $body = $response['Body'];
         $stkCallback = $body['stkCallback'];
         $CheckoutRequestID = $stkCallback['CheckoutRequestID'];
         $ResultCode = $stkCallback['ResultCode'];
 
         // Log::info($ResultCode);
         dd($ResultCode);
+        }
+        else{
+            return "Error Tulia";
+        }
     }
 
     // public function validation(Request $request){
