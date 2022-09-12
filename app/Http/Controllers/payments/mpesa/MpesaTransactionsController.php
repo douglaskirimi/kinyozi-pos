@@ -51,6 +51,8 @@ class MpesaTransactionsController extends Controller
         $service_fees = $request->service_fees;
         $data = $request;
 
+        dd($customer_payment_number);
+
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
