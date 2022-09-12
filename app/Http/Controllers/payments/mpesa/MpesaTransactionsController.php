@@ -77,16 +77,18 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         $curl_response = curl_exec($curl);
-            dd($curl_response);
-            $stkPullResponse = json_decode($curl_response);
-            $stkResCode  = $stkPullResponse->ResponseCode;
-        if ($stkResCode == 0) {
+        return $curl_response;
+        // $curl_response = curl_exec($curl);
+        //     dd($curl_response);
+        //     $stkPullResponse = json_decode($curl_response);
+        //     $stkResCode  = $stkPullResponse->ResponseCode;
+        // if ($stkResCode == 0) {
            // return view('/pages.transactions.completeTransaction',compact('data'))->with('data',$data);
-        	return redirect()->action([MpesaResponsesController::class, 'stkResponseMsg']);
-        }
-        else{
-            return null;
-        }
+        	// return redirect()->action([MpesaResponsesController::class, 'stkResponseMsg']);
+        // }
+        // else{
+        //     return null;
+        // }
  
     }
 
