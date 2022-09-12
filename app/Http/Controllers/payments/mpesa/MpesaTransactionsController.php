@@ -30,7 +30,7 @@ class MpesaTransactionsController extends Controller
          return $access_token->access_token;
         } 
         else{
-            return back()->withError('Failed: Sorry for inconvinience. Check your internet connection and try again');
+            return back()->withError('Failed: Sorry for inconvenience. Check your internet connection and try again');
         }   
     }
         public function lipaNaMpesaPassword()
@@ -50,8 +50,6 @@ class MpesaTransactionsController extends Controller
         $customer_payment_number = '254' . $phone;
         $service_fees = $request->service_fees;
         $data = $request;
-        // dd($data);
-
 
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $curl = curl_init();
