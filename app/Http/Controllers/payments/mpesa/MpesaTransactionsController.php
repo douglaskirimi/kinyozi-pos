@@ -81,35 +81,7 @@ class MpesaTransactionsController extends Controller
 }
 
  public function mpesaRes(Request $request){
-    $response =json_decode($request->getContent());
-
-    dd($response);
-    if(property_exists($response,'Body') && $response->Body->stkCallback->ResultCode =='0') {
-        $merchant_request_id=$response->Body->stkCallback->MerchantRequestID;
-        $checkout_request_id=$response->Body->stkCallback->CheckoutRequestID;
-        $trn = new MpesaStkPush;
-
-        dd($trn);
-
-        $trn =MpesaStkPush::where('merchant_request_id', $merchant_request_id)->where('checkout_request_id', $checkout_request_id)->first();
-
-    
-        $data=[
-            'result_desc'=> $response->Body->stkCallback->ResultDesc,
-            'result_code'=> $response->Body->stkCallback->ResultCode,
-            'merchant_request_id' => $merchant_request_id,
-            'checkout_request_id' => $checkout_request_id,
-            'amount' => $response->Body->stkCallback->CallbackMetadata[0]->Value,
-            'mpesa_receipt_number'=> $response->Body->stkCallback->CallbackMetadata[1]->Value,
-        //'b2c_utility_account_available_funds',
-            'transaction_date' => $response->Body->stkCallback->CallbackMetadata[2]->Value,
-            'phone_number'=> $response->Body->stkCallback->CallbackMetadata[3]->Value,
-        ];
-
-
-        $trn->fill($data)->save();
-
-    }
+   return "Response Processing...";
 }
 
 
