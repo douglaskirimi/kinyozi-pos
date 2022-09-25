@@ -113,6 +113,7 @@ public function stkPush(Request $request) {
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
     $curl_response = curl_exec($curl);    	
     $stkPullResponse = json_decode($curl_response);
+    dd($stkPullResponse);
     $stkResCode  = $stkPullResponse->ResponseCode;
     dd($stkResCode);
     // Log::info($stkPullResponse->CustomerMessage);
