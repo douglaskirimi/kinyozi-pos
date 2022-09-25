@@ -84,7 +84,7 @@ class MpesaTransactionsController extends Controller
 
 public function stkPush(Request $request) {
     $phone = ltrim($request->mpesa_number,0);
-    dd($phone)
+    dd($phone);
     $customer_payment_number = '254' . $phone;
     $service_fees = $request->service_fees;
     $data = $request;
