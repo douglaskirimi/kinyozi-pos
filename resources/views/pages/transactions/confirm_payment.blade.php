@@ -15,7 +15,7 @@
               <h3 class="mb-0 text-dark">Confirm Transaction Details</h3>
           </div>
 
- <form action="{{ route('stkPush') }}" autocomplete="on" method="post">
+ <form action="{{ route('stkPush1') }}" autocomplete="on" method="post">
     
  <!-- <form action="{{ route('generateAccessToken') }}" autocomplete="on" method="post"> -->
     @csrf
