@@ -84,6 +84,7 @@ class MpesaTransactionsController extends Controller
 
 public function stkPush(Request $request) {
     $phone = ltrim($request->mpesa_number,0);
+    dd($phone)
     $customer_payment_number = '254' . $phone;
     $service_fees = $request->service_fees;
     $data = $request;
@@ -114,18 +115,19 @@ public function stkPush(Request $request) {
     $curl_response = curl_exec($curl);    	
     $stkPullResponse = json_decode($curl_response);
     $stkResCode  = $stkPullResponse->ResponseCode;
+    dd($stkResCode);
     // Log::info($stkPullResponse->CustomerMessage);
 
     // return $stkPullResponse->CustomerMessage;
 
-    if ($stkResCode == 0) {
+    // if ($stkResCode == 0) {
         // return $stkPullResponse->CustomerMessage;
        return view('/pages.transactions.completeTransaction',compact('data'))->with('data',$data);
         // return redirect()->action([MpesaTransactionsController::class, 'mpesaRes']);
-    }
-    else{
-        return null;
-    }
+    // }
+    // else{
+    //     return null;
+    // }
  }
 
  public function mpesaRes(Request $request) {
