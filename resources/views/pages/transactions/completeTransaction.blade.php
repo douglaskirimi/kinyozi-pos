@@ -18,7 +18,7 @@
             <div class="my-5 text-center">
              <div class="card col-md-12">Transaction Status: <span class="text-muted">Waiting...</span></div> 
            </div>
-           <form action="/Mpesa/payment/responses" class="text-center">
+           <form action="/api/responses" class="text-center">
              <button class="btn btn-success col-md-12">Complete Transaction</button> 
            </div>
          </div>

@@ -49,6 +49,7 @@ return array(
     'App\\Models\\CompletedTransactions' => $baseDir . '/app/Models/CompletedTransactions.php',
     'App\\Models\\Customer' => $baseDir . '/app/Models/Customer.php',
     'App\\Models\\Employee' => $baseDir . '/app/Models/Employee.php',
+    'App\\Models\\MpesaPayments' => $baseDir . '/app/Models/MpesaPayments.php',
     'App\\Models\\Service' => $baseDir . '/app/Models/Service.php',
     'App\\Models\\Transaction' => $baseDir . '/app/Models/Transaction.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

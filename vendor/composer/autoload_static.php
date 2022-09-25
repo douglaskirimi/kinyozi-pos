@@ -636,6 +636,7 @@ class ComposerStaticInitb20082bd95cc3e3ce9d5a02e3b002edb
         'App\\Models\\CompletedTransactions' => __DIR__ . '/../..' . '/app/Models/CompletedTransactions.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
         'App\\Models\\Employee' => __DIR__ . '/../..' . '/app/Models/Employee.php',
+        'App\\Models\\MpesaPayments' => __DIR__ . '/../..' . '/app/Models/MpesaPayments.php',
         'App\\Models\\Service' => __DIR__ . '/../..' . '/app/Models/Service.php',
         'App\\Models\\Transaction' => __DIR__ . '/../..' . '/app/Models/Transaction.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
