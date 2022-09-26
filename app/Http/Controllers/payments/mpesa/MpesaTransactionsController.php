@@ -26,10 +26,10 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
-        $access_token=json_decode($curl_response)->access_token;
-        // dd($access_token);
+        $access_token=json_decode($curl_response);
+        dd($access_token->access_token);
         // if (!empty($access_token)) {
-         return $access_token;
+        //  return $access_token;
         // } 
         // else{
         //     return back()->withError('Failed: Sorry for inconvenience. Check your internet connection and try again');
