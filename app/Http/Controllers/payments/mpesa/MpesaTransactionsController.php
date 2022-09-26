@@ -20,13 +20,13 @@ class MpesaTransactionsController extends Controller
         $credentials = base64_encode(env('MPESA_CONSUMER_KEY').":".env('MPESA_CONSUMER_SECRET'));
         $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
         $curl = curl_init();
-        dd($curl);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Basic ".$credentials));
         curl_setopt($curl, CURLOPT_HEADER,false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
+        dd(curl_response);
         $access_token=json_decode($curl_response);
         dd($access_token->access_token);
         // if (!empty($access_token)) {
