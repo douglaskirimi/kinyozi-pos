@@ -26,14 +26,14 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
-        dd($curl_response);
-        $access_token=json_decode($curl_response);
-        if (!empty($access_token)) {
-         return $access_token->access_token;
-        } 
-        else{
-            return back()->withError('Failed: Sorry for inconvenience. Check your internet connection and try again');
-        }   
+        $access_token=json_decode($curl_response)->access_token;
+        // dd($access_token);
+        // if (!empty($access_token)) {
+         return $access_token;
+        // } 
+        // else{
+        //     return back()->withError('Failed: Sorry for inconvenience. Check your internet connection and try again');
+        // }   
     }
         public function lipaNaMpesaPassword()
     {
@@ -102,7 +102,7 @@ public function stkPush(Request $request) {
         'PartyA' => '254758319193', //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-        'CallBackURL' => 'https://webhook.site/1f6dc8f1-c13b-4913-8cd3-03a385384b6d',
+        'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
         'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
