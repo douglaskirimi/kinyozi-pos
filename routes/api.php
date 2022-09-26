@@ -45,9 +45,15 @@ Route::get('/mpesa-apis', function () {
 // Route::post('/get-token', [MpesaTransactionsController::class, 'getAccessToken'])->name('generateAccessToken');
 
 
+Route::post('/get-token', [MpesaTransactionsController::class, 'generateAccessToken'])->name('generateAccessToken');
+
+
 Route::get('/mpesa-stkPush1', [MpesaTransactionsController::class, 'stkPush1'])->name('stkPush1');
 
 Route::get('/Mpesa-payment/responses',[MpesaResponsesController::class, 'stkResponseMsg'])->name('stkResponseMsg');
 
 
 Route::get('/responses', [MpesaTransactionsController::class, 'mpesaRes'])->name('mpesaRes');
+
+
+
