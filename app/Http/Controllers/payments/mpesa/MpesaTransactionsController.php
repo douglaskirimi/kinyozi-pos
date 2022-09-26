@@ -102,7 +102,7 @@ public function stkPush(Request $request) {
         'PartyA' => '254758319193', //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-        'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
+        'CallBackURL' => 'https://webhook.site/1f6dc8f1-c13b-4913-8cd3-03a385384b6d',
         'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
