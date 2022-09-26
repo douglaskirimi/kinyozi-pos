@@ -37,7 +37,7 @@ use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
 
 
 
-Route::post('/get-token', [MpesaTransactionsController::class, 'getAccessToken'])->name('generateAccessToken');
+Route::post('/get-token', [MpesaTransactionsController::class, 'generateAccessToken'])->name('generateAccessToken');
 
 Route::get('/mpesa-stkPush', [MpesaTransactionsController::class, 'stkPush'])->name('stkPush');
 
