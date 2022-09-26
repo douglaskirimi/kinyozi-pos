@@ -98,12 +98,12 @@ public function stkPush(Request $request) {
         'Password' => $this->lipaNaMpesaPassword(),
         'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
         'TransactionType' => 'CustomerPayBillOnline',
-        'Amount' => $service_fees,
-        'PartyA' => $customer_payment_number, // replace this with your phone number
+        'Amount' => 1 //$service_fees,
+        'PartyA' => '254758319193'; //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
         'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
-        'AccountReference' => "Glitter Barbershop",
+        'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
 
