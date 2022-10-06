@@ -12,7 +12,6 @@ use App\Models\MpesaPayments;
 
 class MpesaTransactionsController extends Controller
 {
-
         public function generateAccessToken()
     {
         $consumer_key=env('MPESA_CONSUMER_KEY');
@@ -26,15 +25,9 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
-        dd($curl_response);
-        $access_token=json_decode($curl_response);
-        dd($access_token->access_token);
-        // if (!empty($access_token)) {
-        //  return $access_token;
-        // } 
-        // else{
-        //     return back()->withError('Failed: Sorry for inconvenience. Check your internet connection and try again');
-        // }   
+        $data=json_decode($curl_response);
+        $access_token = $data->access_token;
+        return $access_token;  
     }
         public function lipaNaMpesaPassword()
     {
@@ -45,43 +38,6 @@ class MpesaTransactionsController extends Controller
         $lipa_na_mpesa_password = base64_encode($BusinessShortCode.$passkey.$timestamp);
         return $lipa_na_mpesa_password;
     }
-
-
-    public function stkPush1(Request $request){        
-        $phone = ltrim($request->mpesa_number,0);
-        $customer_payment_number = '254' . $phone;
-        $service_fees = $request->service_fees;
-        $data = $request;
-    
-    $url ='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-    $curl_post_data =[
-        'BusinessShortCode' => 174379,
-        'Password' => $this->lipaNaMpesaPassword(),
-        'Timestamp'=>Carbon::rawParse('now')->format('YmdHms'),
-        'TransactionType'=> 'CustomerPayBillOnline',
-        //'Amount' => $amount,
-        'Amount' => '1',
-        'PartyA' =>'254758319193',
-        'PartyB' =>174379,
-        'PhoneNumber'=>'254758319193',
-        'CallBackURL'=> 'https://08f5-102-2-136-73.in.ngrok.io/api/responses',
-        'AccountReference'=>"The Glitters Barbershop",
-        'TransactionDesc'=> "Lipa Na Mpesa"
-
-    ];
-    $data_string =json_encode($curl_post_data);
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generateAccessToken()));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-    $curl_response = json_decode(curl_exec($curl));
-    // Log::info($curl_response->CustomerMessage);
-    return json_encode($curl_response->ResponseCode . $curl_response->CustomerMessage);
-    // return view('pages.transactions.completed_transactions');
-    // return redirect()->action([MpesaTransactionsController::class, 'mpesaRes']);
-}
 
 public function stkPush(Request $request) {
     $phone = ltrim($request->mpesa_number,0);
@@ -99,11 +55,11 @@ public function stkPush(Request $request) {
         'Password' => $this->lipaNaMpesaPassword(),
         'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
         'TransactionType' => 'CustomerPayBillOnline',
-        'Amount' => 1, //$service_fees,
+        'Amount' => $service_fees,
         'PartyA' => '254758319193', //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-        'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
+        'CallBackURL' => 'https://6c89-154-159-237-35.in.ngrok.io/api/responses',
         'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
@@ -115,45 +71,29 @@ public function stkPush(Request $request) {
     $curl_response = curl_exec($curl);    	
     $stkPullResponse = json_decode($curl_response);
     $stkResCode  = $stkPullResponse->ResponseCode;
-    // Log::info($stkPullResponse->CustomerMessage);
 
-    // return $stkPullResponse->CustomerMessage;
-
-    // if ($stkResCode == 0) {
-        // return $stkPullResponse->CustomerMessage;
-       return view('/pages.transactions.completeTransaction',compact('data'))->with('data',$data);
-        // return redirect()->action([MpesaTransactionsController::class, 'mpesaRes']);
-    // }
-    // else{
-    //     return null;
-    // }
- }
+    if ($stkResCode == 0) {
+    Log::info($stkPullResponse->CustomerMessage);
+    return view('/pages.transactions.complete_Transaction',compact('data'))->with('data',$data);
+}
+       else{
+        } 
+        return redirect()->action([TransactionController::class, 'new_transaction']);
+}
 
  public function mpesaRes(Request $request) {
-    // Log::info($request->getContent());
-    $response =json_decode($request->getContent(),true);
-    // if($response==null) {
-    //     return redirect()->action([MpesaTransactionsController::class, 'mpesaRes']);
-    // }
-    // else{
-
+        $response =json_decode($request->getContent(),true);
         $Item = $response['Body']['stkCallback']['CallbackMetadata']['Item'];
-        // Log::info($item);
         $metadata = array(
             'MerchantRequestID' => $response['Body']['stkCallback']['MerchantRequestID'],
             'CheckoutRequestID' => $response['Body']['stkCallback']['CheckoutRequestID'],
             'ResultCode' => $response['Body']['stkCallback']['ResultCode'],
-            'ResultDesc' => $response['Body']['stkCallback']['ResultCode'],
+            'ResultDesc' => $response['Body']['stkCallback']['ResultDesc'],
         );
     
         $mpesaData = array_column($Item, 'Value', 'Name');
         $mpesaData = array_merge($metadata, $mpesaData);
         
-        // Log::info($mpesaData);
-        // $mpesaNumber = $mpesaData['PhoneNumber'];
-        // Log::info($mpesaNumber);
-        // MpesaPayments::insert($transactionData);
-    
         if($mpesaData['ResultCode']==0) {
             $newTransaction = new MpesaPayments;   
         
@@ -162,24 +102,25 @@ public function stkPush(Request $request) {
             $newTransaction->ResultCode = $mpesaData['ResultCode'];
             $newTransaction->ResultDesc = $mpesaData['ResultDesc'];
             $newTransaction->Amount = $mpesaData['Amount'];
-            $newTransaction->MpesaReceiptNumber = $mpesaData['MpesaReceiptNumber'];
+            $newTransaction->MpesaReceiptNumber = $mpesaData['MpesaReceiptNumber'].rand(0,9999);            
+            $newTransaction->Status = "Success";
             $newTransaction->TransactionDate = $mpesaData['TransactionDate'];
             $newTransaction->PhoneNumber = $mpesaData['PhoneNumber'];
             $m = $newTransaction->save();
         
             if($m==1) {
-                return "Transaction record saved successfully!";
+               Log::info("Transaction completed successfully!");
+               return redirect()->back()->with('feedback','Transaction completed successfully!');
             }
             else{
-                return "Error";
+                Log::info("Error");
             }
     
         }
-        else{
-            Log::info('Error');
+        elseif($mpesaData['ResultCode']==1) {
+            Log::info("Error Occurred. Try again!");
+            return redirect()->back()->with('feedback','Transaction failed! We are sorry, try again!');
         }
-
-    // }
 }
 
 

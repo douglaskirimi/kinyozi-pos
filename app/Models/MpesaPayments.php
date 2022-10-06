@@ -16,6 +16,7 @@ class MpesaPayments extends Model
         'ResultDesc',
         'Amount',
         'MpesaReceiptNumber',
+        'Status',
         'TransactionDate',
         'PhoneNumber'];
 }

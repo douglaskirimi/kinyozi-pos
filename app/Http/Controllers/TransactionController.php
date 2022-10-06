@@ -21,7 +21,12 @@ class TransactionController extends Controller
          // dd($transactions);
      // $transactions =Transaction::orderby("id","asc")->select("receipt_number")->distinct();
 
-    return view('pages.transactions.index')->with('transactions', $transactions);
+    return view('pages.transactions.mpesa_payments.blade.')->with('transactions', $transactions);
+    }
+
+    public function index2() {
+         $transactions=DB::table('mpesa_payments')->select('id','PhoneNumber','ResultDesc','MpesaReceiptNumber','Amount','Status','created_at')->distinct()->get();
+      return view('pages.transactions.mpesa_payments')->with('transactions', $transactions);
     }
 
     public function new_transaction() {

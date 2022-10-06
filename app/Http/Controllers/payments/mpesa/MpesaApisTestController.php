@@ -22,7 +22,7 @@ class MpesaApisTestController extends Controller
             )
         );
             $response = curl_exec($curl);
-            dd($response);
+            dd('ggg');
             curl_close($curl);             
             return $response;
     }

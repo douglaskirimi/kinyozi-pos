@@ -18,9 +18,8 @@ use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
 
 // APIS TESTING - NOT PART OF THE APP
 
-// Route::get('/mpesa-apis', function () {
-//     return view('welcome');
-// });
+
+
 
 // Route::post('get-token',[MpesaApisTestController::class,'getAccessToken'])->name('get-token');
 // Route::post('get-token',[MpesaController::class,'generateAccessToken'])->name('get-token');
@@ -34,14 +33,6 @@ use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
 
 # Route::post('/mpesa/stkPush/', [MpesaTransactionsController::class, 'stkPush'])->name('stkPush');
 // Route::get('/Mpesa/payment/responses',[MpesaTransactionsController::class, 'transactionResponse'])->name('mpesa-response');
-
-
-
-Route::post('/get-token', [MpesaTransactionsController::class, 'generateAccessToken'])->name('generateAccessToken');
-
-Route::get('/mpesa-stkPush', [MpesaTransactionsController::class, 'stkPush'])->name('stkPush');
-
-
 
 Route::get('/', function () {
     return view('auth/login');
@@ -101,6 +92,8 @@ Route::group(['middleware' => 'auth'], function () {
    Route::post('/categories/update/{category}','App\Http\Controllers\CategoryController@update')->name('category.update');
 
  // Transactions Pages Routes
+    Route::get('/mpesa_payments','App\Http\Controllers\TransactionController@index2')->name('mpesa_payments');
+
    Route::get('/transactions/list','App\Http\Controllers\TransactionController@index')->name('all_transactions');
 
    Route::get('/transactions','App\Http\Controllers\TransactionController@new_transaction')->name('make-transaction');

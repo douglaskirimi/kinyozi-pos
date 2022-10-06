@@ -18,10 +18,11 @@ class CreateMpesaPaymentsTable extends Migration
             $table->string('MerchantRequestID');
             $table->string('CheckoutRequestID');
             $table->integer('ResultCode');
-            $table->integer('ResultDesc');
+            $table->string('ResultDesc');
             $table->double('Amount');
             $table->string('MpesaReceiptNumber')->unique();
-            $table->date('TransactionDate');
+            $table->string('Status');
+            $table->dateTime('TransactionDate');
             $table->bigInteger('PhoneNumber');
             $table->timestamps();
         });

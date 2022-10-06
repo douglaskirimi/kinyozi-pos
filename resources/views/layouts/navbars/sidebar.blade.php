@@ -133,13 +133,23 @@
                        {{  __('New Transaction') }}</span>
                     </a>
                 </li>
-                    <li class="nav-item">
+
+                          <li class="nav-item">
+                    <a class="nav-link" href="{{ route('mpesa_payments') }}">
+                        <span class="nav-link-text" style="">
+                        <i class="ml-3" style=""></i>
+                       {{  __('Mpesa Payments History') }}</span>
+                    </a>
+                </li>
+
+
+               <!--      <li class="nav-item">
                     <a class="nav-link" href="{{ route('all_transactions') }}">
                         <span class="nav-link-text" style="">
                         <i class="ml-3" style=""></i>
                        {{  __('Transaction History') }}</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
