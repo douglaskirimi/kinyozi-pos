@@ -59,7 +59,7 @@ public function stkPush(Request $request) {
         'PartyA' => '254758319193', //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-        'CallBackURL' => 'https://6c89-154-159-237-35.in.ngrok.io/api/responses',
+        'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
         'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
