@@ -25,36 +25,36 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCategoryname">Customer Name : <b class="text-success"> {{ $customer_data->name }} </b></label>
-      <input type="hidden" name="customer_name" value="{{ $customer_data->name }}">
+      <label for="inputCategoryname">Customer Name : <b class="text-success"></b></label>
+      <input type="hidden" name="customer_name" value="">
     </div>
     </div>
 
       <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputCategoryname">Customer Mpesa Number : <b class="text-success"> {{ $phone }} </b></label>
-      <input type="hidden" name="mpesa_number" value="{{$phone }}">
+      <label for="inputCategoryname">Customer Mpesa Number : <b class="text-success"></b></label>
+      <input type="hidden" name="mpesa_number" value="">
     </div>
     </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCategoryname">Service Offered : <b> {{ $service_data->service_category }}</b> / <b class="text-success">{{ $service_data->service_name }} </b></label>
-      <input type="hidden" name="service_offered" value="{{ $service_data->service_name }} ">
+      <label for="inputCategoryname">Service Offered : <b> </b> / <b class="text-success"></b></label>
+      <input type="hidden" name="service_offered" value="">
     </div>
  </div>
 
   <div class="form-row">
    <div class="form-group col-md-4">
-      <label for="inputCategoryname">Service Fees : <b class="text-success"> Ksh. {{ $service_data->service_charges }} </b></label>
-      <input type="hidden" name="service_fees" value="{{ $service_data->service_charges }}">
+      <label for="inputCategoryname">Service Fees : <b class="text-success"></b></label>
+      <input type="hidden" name="service_fees" value="">
     </div>
     </div>
 
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputCategoryname">Served By : <b class="text-success"> {{ $data->empl_name }} </b></label>
-      <input type="hidden" name="served_by" value="{{ $data->empl_name }}">
+      <label for="inputCategoryname">Served By : <b class="text-success"></b></label>
+      <input type="hidden" name="served_by" value="">
     </div>
     </div>
 

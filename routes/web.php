@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\payments\mpesa\MpesaTransactionsController;
 use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RoleController;
+use App\Models\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,17 +41,10 @@ use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
 Route::get('/', function () {
     return view('auth/login');
 });
-Route::get('/test', function () {
-    return view('test');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
@@ -67,19 +64,19 @@ Route::group(['middleware' => 'auth'], function () {
    //Services Page Routes
    Route::get('services',[App\Http\Controllers\ServicesController::class,'index'])->name('show_services');
    Route::get('services/add',[App\Http\Controllers\ServicesController::class,'display_form'])->name('add_service');
-   Route::post('services/add',[App\Http\Controllers\ServicesController::class,'create'])->name('add_service');
+   Route::post('services/create',[App\Http\Controllers\ServicesController::class,'create'])->name('create_service');
    Route::get('/services/delete/{id}','App\Http\Controllers\ServicesController@destroy')->name('service.delete');
    Route::get('/services/edit/{service}','App\Http\Controllers\ServicesController@edit')->name('service.edit');
    Route::post('/services/edit/{service}','App\Http\Controllers\ServicesController@update')->name('service.update');
 
 
     // Customer Pages Routes
-   Route::get('/customers/list','App\Http\Controllers\CustomerController@index')->name('customers_list');
-   Route::get('/customers/add','App\Http\Controllers\CustomerController@showform')->name('customers_add_form');
-   Route::post('/customers/add','App\Http\Controllers\CustomerController@create')->name('customers.create');
-   Route::get('/customers/delete/{id}','App\Http\Controllers\CustomerController@delete')->name('customer.delete');
-   Route::get('/customers/edit/{customer}','App\Http\Controllers\CustomerController@edit')->name('customer.edit');
-   Route::post('/customers/update/{customer}','App\Http\Controllers\CustomerController@update')->name('customer.update');
+   Route::get('/customers/list',[CustomerController::class,'index'])->name('customers_list');
+   Route::get('/customers/add',[CustomerController::class,'showform'])->name('customers_add_form');
+   Route::post('/customers/add',[CustomerController::class,'create'])->name('customers.create');
+   Route::get('/customers/delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
+   Route::get('/customers/edit/{customer}',[CustomerController::class,'edit'])->name('customer.edit');
+   Route::post('/customers/update/{customer}',[CustomerController::class,'update'])->name('customer.update');
 
    // Categories Pages RouteServiceProvider
     Route::get('/categories/list','App\Http\Controllers\CategoryController@index')->name('show_categories');
@@ -113,16 +110,40 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::get('/generate/receipt/{transaction}', 'App\Http\Controllers\TransactionController@generatePDF')->name('generate_receipt');
 
-  // Route::get('/generate-pdf', 'App\Http\Controllers\TransactionController@generatePDF')->name('generate_receipt');
+  Route::get('/payment/complete', function() {
+   return view('pages.transactions.completeTransaction');
+  })->name('payment.complete');
 
+Route::get('services/search',[ServicesController::class,'search'])->name('services.search');
 
-
-
-
-
-
-   Route::get('/charts', 'HomeController@chartjs');  
+Route::get('/charts', 'HomeController@chartjs');  
    
 
 });
 
+ Route::post('/save/transactio
+ns','App\Http\Controllers\TransactionController@save')->name('save.transaction');
+
+ // Roles Routes
+ Route::resource('/roles','App\Http\Controllers\RoleController');
+
+
+//Dummy Routes(learning)
+Route::get('/servicesmap', function() {
+   return Service::all()->map->only('service_name','service_charges');
+});
+
+Route::get('/roles-testing',[RoleController::class,'roles_testing']);
+
+
+// Roles Routes
+ Route::post('/role/create',[RoleController::class,'store'])->name('role.create');
+
+  Route::get('/permission/create',function() {
+   return view('pages.roles.permissions.add');
+  })->name('permission.create');
+
+ Route::post('/permission/create',[RoleController::class,'permissionSave'])->name('permission.store');
+
+
+ Route::get('/roles/delete/{$id}', [RoleController::class,'destroy'])->name('role.delete');

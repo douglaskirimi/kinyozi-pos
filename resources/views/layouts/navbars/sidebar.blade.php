@@ -20,7 +20,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                     <div class=" dropdown-header noti-title">
-                        <h6 class="" style="color:limegreen;font-family: tahoma;">{{ __('Logged in:') }} <span style="color:dodgerblue;"> {{ auth()->user()->email }} </span>
+                        <h6 class="" style="color:limegreen;font-family: tahoma;">{{ __('Logged in:') }} <span style="color:dodgerblue;"> {{ auth()->user()->name }} </span>
                     </div>
       <!--               <a href="{{ route('profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
@@ -66,13 +66,13 @@
                 </div>
             </div>
             <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
+            <form class="mt-4 mb-3 d-md-none" action="{{ route('services.search') }}" method="">
+                @csrf
                 <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
+                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search services available') }}" aria-label="Search" name="search">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
+                        <input class="btn btn-info" type="submit" value="Search">
+                            <!-- <span class="fa fa-search text-info"></span> -->
                     </div>
                 </div>
             </form>
@@ -101,12 +101,15 @@
                         <span class="nav-link-text">{{ __('Categories') }}</span>
                     </a>
                 </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('show_employees')}}" role="button" aria-expanded="true">
                         <i class="fa fa-users" style=""></i>
                         <span class="nav-link-text">{{ __('Employees') }}</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#" role="button" aria-expanded="true">
                         <i class="fas fa-image" style=""></i>
@@ -114,17 +117,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="true">
+                    <a class="nav-link" href="{{ route('roles.index') }}" role="button" aria-expanded="true">
                         <i class="fa fa-user" style=""></i>
                         <span class="nav-link-text" style="">{{ __('Roles') }}</span>
                     </a>
                 </li>
+                @can('isAdmin')
+                
                 <li class="nav-item">
                     <a class="nav-link" href="#" role="button" aria-expanded="true">
                         <i class="fa fa-file" style=""></i>
                         <span class="nav-link-text" style="">{{ __('Reports') }}</span>
                     </a>
                 </li>
+                @endcan
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('make-transaction') }}" role="button" aria-expanded="true">
@@ -135,7 +141,7 @@
                 </li>
 
                           <li class="nav-item">
-                    <a class="nav-link" href="{{ route('mpesa_payments') }}">
+                    <a class="nav-link" href="{{ route('all_transactions') }}">
                         <span class="nav-link-text" style="">
                         <i class="ml-3" style=""></i>
                        {{  __('Mpesa Payments History') }}</span>

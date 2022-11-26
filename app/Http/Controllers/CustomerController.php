@@ -22,7 +22,20 @@ class CustomerController extends Controller
           'phone' => 'required|unique:customers|max:255',
         ]);
 
-       Customer::create($request->all());
+        $formatted_phone = str_replace('0','+254',$request->phone);
+
+        $newCustomer = new Customer;
+        $newCustomer->name = $request->name;
+        $newCustomer->email = $request->email;
+        $newCustomer->gender = $request->gender;
+        $newCustomer->phone = $formatted_phone;
+        $newCustomer->save();
+
+
+        // dd($newCustomer);
+
+
+       // Customer::create($request->all());
        Alert::success('New Customer','Customer added successfully');
        return redirect()->route('customers_list');
     }

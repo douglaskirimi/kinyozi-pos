@@ -9,7 +9,7 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
         <div class="text-right mt-4">
-              <a href="{{ route('show_categories') }}" class="btn btn-md btn-primary">+ See all</a>
+              <a href="{{ route('show_categories') }}" class="btn btn-md btn-info">+ See all</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0">Edit Category</h3>
@@ -56,7 +56,7 @@
   </div -->
 
   <div class="text-left">
-     <button class="btn btn-primary">Update</button>
+     <button class="btn btn-info">Update</button>
   </div>
 
     <!--  <div class=""> 
@@ -88,6 +88,6 @@
     </div>
   </div>
         
-        @include('layouts.footers.auth')
+        <!-- include('layouts.footers.auth') -->
     </div>
 @endsection

@@ -9,7 +9,7 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
             <div class="text-right mt-4">
-              <a href="{{ route('show_categories') }}" class="btn btn-md btn-dark">All Categories</a>
+              <a href="{{ route('show_categories') }}" class="btn btn-md btn-dark"><span class="fa fa-share"></span> All Categories</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0 text-dark">New Category</h3>
@@ -49,7 +49,7 @@
   </div -->
 
   <div class="text-left">
-     <button class="btn btn-primary">ADD</button>
+     <button class="btn btn-info">ADD</button>
   </div>
 
     <!--  <div class=""> 

@@ -5,20 +5,20 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body bg-info text-light">
+                        <div class="card-body" style="border-radius: 15px!important;">
                             <div class="row">
                                 <div class="col">
-                                    <h4 class="card-title text-white mb-0">Customers</h4>
-                                    <span class="h3 text-white font-weight-bold mb-0">{{ App\Models\Customer::all()->count() }}</span>
+                                    <h4 class="card-title text-uppercase  text-muted mb-0">Customers</h4>
+                                    <span class="h3 text-info font-weight-bold mb-0">{{ App\Models\Customer::all()->count() }}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-plain text-info rounded-circle shadow">
+                                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                                         <i class="fas fa-users"></i>
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <a href="{{ route('customers_list') }}"><span class="text-white text-nowrap">View Customers</span></a>
+                                <a href="{{ route('customers_list') }}"><span class="text-muted text-nowrap">View Customers</span></a>
                             </p>
                         </div>
                     </div>
@@ -26,40 +26,41 @@
 
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body bg-success text-light">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h4 class="card-title text-white mb-0">Services</h4>
-                                    <span class="h3 text-white font-weight-bold mb-0">{{ App\Models\Service::all()->count() }}</span>
+                                    <h4 class="card-title text-uppercase text-muted mb-0">Services</h4>
+                                    <span class="h3 text-success font-weight-bold mb-0">{{ App\Models\Service::all()->count() }}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-plain text-success rounded-circle shadow">
+                                    <div class="icon icon-shape text-white bg-success rounded-circle shadow">
                                         <i class="fas fa-shopping-bag"></i>
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <a href="{{ route('show_services') }}"><span class="text-white text-nowrap">View services</span></a>
+                                <a href="{{ route('show_services') }}"><span class="text-muted text-nowrap">View services</span></a>
                             </p>
                         </div>
                     </div>
-                </div>         
+                </div> 
+     
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body bg-primary text-light">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h4 class="card-title text-white mb-0">Employees</h4>
-                                    <span class="h3 text-white font-weight-bold mb-0">{{ App\Models\Employee::all()->count() }}</span>
+                                    <h4 class="card-title text-uppercase  text-muted mb-0">Employees</h4>
+                                    <span class="h3 text-primary font-weight-bold mb-0">{{ App\Models\Employee::all()->count() }}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-plain text-primary rounded-circle shadow">
+                                    <div class="icon icon-shape text-white bg-primary rounded-circle shadow">
                                         <i class="fas fa-users"></i>
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <a href="{{ route('show_employees') }}"><span class="text-white text-nowrap">View Employees</span></a>
+                                <a href="{{ route('show_employees') }}"><span class="text-muted text-nowrap">View Employees</span></a>
                             </p>
                         </div>
                     </div>
@@ -67,21 +68,28 @@
 
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body bg-warning text-light">
+                        <div class="card-body text-info">
                             <div class="row">
                                 <div class="col">
-                                    <h4 class="card-title text-white mb-0">Categories</h4>
-                                    <span class="h3 text-white font-weight-bold mb-0">{{ App\Models\Category::all()->count() }}</span>
+                                    <h4 class="card-title text-muted text-uppercase mb-0">Daily Sales</h4>
+                                    <span class="h3 text-warning font-weight-bold mb-0"> Ksh. {{ App\Models\Transaction::all()->sum('amount') }}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-plain text-warning rounded-circle shadow">
-                                        <i class="fa fa-shopping-bag"></i>
+                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                        <i class="fas fa-coins"></i>
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <a href="{{ route('show_categories') }}"><span class="text-white text-nowrap">View Categories</span></a>
+                               <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                <span class="text-muted">Since 8AM</span>
+
+                                <a href="{{ route('all_transactions') }}" class="col-auto"><span class="text-info fa fa-chart-line float-right mt-2" title="View Transactions"></span></a>
                             </p>
+
+                        <!--     <p class="mt-3 mb-0 text-muted text-sm">
+                                <a href="{{ route('all_transactions') }}"><span class="text-white text-nowrap">View Transactions</span></a>
+                            </p> -->
                         </div>
                     </div>
                 </div>

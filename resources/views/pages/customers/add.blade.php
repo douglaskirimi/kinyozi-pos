@@ -10,7 +10,7 @@
             <!-- Card header -->
             
             <div class="text-right mt-4">
-              <a href="{{ route('customers_list') }}" class="btn btn-md btn-dark">All Customers</a>
+              <a href="{{ route('customers_list') }}" class="btn btn-md btn-dark"><span class="fa fa-share"></span> All Customers</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0 text-dark">New Customer</h3>
@@ -20,14 +20,14 @@
     <div class="form-row">
      <div class="form-group col-md-6">
       <label for="inputFname">Name <b class="text-danger">*</b></label>
-      <input type="text" class="form-control" name="name" id="inputname" placeholder="First name..."> 
+      <input type="text" class="form-control" name="name" id="inputname" placeholder="First name..." value="{{ old('name') }}"> 
         @error('name')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
         <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email...">
+      <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email..." value="{{ old('email') }}">
        @error('email')
          <span class="text-danger">{{ $message }}</span>
       @enderror
@@ -37,16 +37,16 @@
      <div class="form-group col-md-6">
       <label for="inputEmail4">Gender</label>
        <select class="form-control" name="gender">
-        <option value="">--Select Gender --</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="rns">Rather not say</option>         
+        <option value="select">--Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Rather Not Say">Rather not say</option>         
        </select>
       <!-- <input type="text" class="form-control" name="gender" id="inputEmail4" placeholder="Customer Gender..."> -->
     </div>
     <div class="form-group col-md-6">
       <label for="inputPhone">Phone <b class="text-danger">*</b></label>
-      <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number...">      
+      <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." value="{{ old('phone') }}">      
       @error('phone')
          <span class="text-danger">{{ $message }}</span>
       @enderror
@@ -79,7 +79,7 @@
   </div -->
 
   <div class="text-right">
-     <button class="btn btn-primary">Save</button>
+     <button class="btn btn-info">Save</button>
   </div>
 
     <!--  <div class=""> 

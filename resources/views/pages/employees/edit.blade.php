@@ -9,7 +9,7 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
         <div class="text-right mt-4">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-primary">+ See all</a>
+              <a href="{{ route('show_employees') }}" class="btn btn-md btn-dark">+ See all</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0">Edit Employee Details</h3>
@@ -20,7 +20,7 @@
     <div class="form-row">
      <div class="form-group col-md-6">
       <label for="employee_name">Employee Name</label>
-      <input type="text" class="form-control" name="empl_name" id="empl_name" placeholder="Employee name..." value="{{ $data->empl_name }}">
+      <input type="text" class="form-control" name="name" id="name" placeholder="Employee name..." value="{{ $data->name }}">
     </div>
      <div class="form-group col-md-6">
       <label for="inpuSname">Gender</label>     
@@ -70,7 +70,7 @@
     
     <div class="form-row">
      <div class="form-group"> 
-        <input type="submit" class="form-control btn btn-primary" name="add_employee" id="inputSname" value="UPDATE">     
+        <input type="submit" class="form-control btn btn-info" name="add_employee" id="inputSname" value="UPDATE">     
     </div>
   </div>
     </div>

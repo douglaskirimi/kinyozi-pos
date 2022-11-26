@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use App\Models\Service;
 use App\Models\Customer;
 use App\Models\Category;
@@ -21,7 +23,7 @@ class TransactionController extends Controller
          // dd($transactions);
      // $transactions =Transaction::orderby("id","asc")->select("receipt_number")->distinct();
 
-    return view('pages.transactions.mpesa_payments.blade.')->with('transactions', $transactions);
+    return view('pages.transactions.index')->with('transactions', $transactions);
     }
 
     public function index2() {
@@ -36,13 +38,15 @@ class TransactionController extends Controller
              // dd($customers['data']);
      $categories = Category::orderby("category_name","asc")->select('id','category_name')->get();
      $services['data'] = Service::orderby("service_name","asc")->select('id','service_name')->get();
-     $employees['data'] = Employee::orderby("empl_name","asc")->select('id','empl_name')->get();
+     $employees['data'] = Employee::orderby("name","asc")->select('id','name')->get();
         return view('pages.transactions.make_transaction')->with('customers', $customers)->with('employees',$employees)->with('services',$services);
     }
     
    public function confirm_payment(Request $request){
     $data = $request;
     $name = $request->name; 
+    // dd($name);
+    $served_by = Auth::user()->name;
     $service_name = $request->service_name;
 
     $customer_data = DB::table('customers')->where('name',$name)->first();
@@ -59,6 +63,29 @@ class TransactionController extends Controller
     // $service_name = $request->service_name;
     // dd($phone);
     return view('pages.transactions.confirm_payment',compact('data','customer_data','service_data','phone'));
+   }
+
+   public function save(Request $request) {  
+    $customer_id  = $request->customer_id;  
+    $name  = $request->customer_name;
+    $customer_phone  = $request->mpesa_number;
+    $servicce_offered  = $request->service_offered;
+    $service_fee  = $request->service_fees;
+    $served_by  = auth()->user()->name;
+    $service_fee  = $request->service_fees;
+
+    $transaction = new Transaction;
+    $transaction->cust_name = $request->customer_name;
+    $transaction->service_offered  = $request->service_offered;
+    $transaction->customer_id = $customer_id;
+    $transaction->payment_number = $request->mpesa_number;
+    $transaction->served_by = $served_by;
+    $transaction->receipt_number = 'LXCRGJ'.rand(1,10000);
+    // dd($transaction->receipt_number);
+    $transaction->amount = $request->service_fees;
+    $transaction->status = 'active';
+    $transaction->save();
+    return redirect()->route('all_transactions');
    }
 
    public function send_stk(Request $request) {
@@ -194,7 +221,8 @@ return redirect()->route('receive_stk_response');
 
     public function delete($id)
     {      
-        Transaction::where('id', $id)->update(array('status' => 'inactive'));
+        // Transaction::where('id', $id)->update(array('status' => 'inactive'));
+        Transaction::where('id',$id)->delete();
 
         Alert::warning('Delete Transaction Record', 'Transaction record removed successfully');
         return back()->with("delete","Transaction record removed successfully");

@@ -4,13 +4,16 @@
         <!-- Brand -->
         <a class="h3 mb-0 text-info text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" action="{{ route('services.search')}}" method="">
+            @csrf
             <div class="form-group mb-0">
                 <div class="input-group input-group-alternative bg-white">
                     <div class="input-group-prepend">
                         <span class="input-group-text text-dark"><i class="fas fa-search"></i></span>
                     </div>
-                    <input class="form-control text-dark" style="color:red;" value="Search Anything..." placeholder="Search" type="text">
+                    <input class="form-control text-info" name="search" placeholder="Search a service" type="text">
+
+                     <input class="btn btn-info" value="Search" placeholder="Search" type="submit" style="border-radius:35px;">
                 </div>
             </div>
         </form>
@@ -31,10 +34,10 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                 <!--    <a href="{{ route('profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
-                    </a>
+                    </a> -->
             <!--         <a href="#" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Settings') }}</span>

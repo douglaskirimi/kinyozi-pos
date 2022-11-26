@@ -9,7 +9,7 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
         <div class="text-right mt-4">
-              <a href="{{ route('customers_list') }}" class="btn btn-md btn-primary">All Customers</a>
+              <a href="{{ route('customers_list') }}" class="btn btn-md btn-dark">All Customers</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0">Edit Customer Details</h3>
@@ -29,9 +29,16 @@
   </div>
    <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputEmail4">Gender</label>
-      <input type="text" class="form-control" name="gender" id="inputEmail4" placeholder="Gender..." value="{{ $data->gender }}">
+      <label for="inpuSname">Gender</label>     
+      <select class="form-control" class="form-control" name="gender" id="employee_name">
+      <option value="{{ $data->gender }}">{{ $data->gender }}</option>
+      <!-- Read Categories -->
+      <option value='Male'>Male</option>
+      <option value='Female'>Female</option>
+      <option value='Rather Not Say'>Rather Not Say</option>
+    </select> 
     </div>
+    
     <div class="form-group col-md-6">
       <label for="inputPhone">Phone</label>
       <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone Number..." value="{{ $data->phone }}">
@@ -66,7 +73,7 @@
     
     <div class="form-row">
      <div class="form-group"> 
-        <input type="submit" class="form-control btn btn-primary" name="add_employee" id="inputSname" value="UPDATE">     
+        <input type="submit" class="form-control btn btn-info" name="add_employee" id="inputSname" value="UPDATE">     
     </div>
   </div>
     </div>

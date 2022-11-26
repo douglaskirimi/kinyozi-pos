@@ -12,13 +12,13 @@
               <h3 class="mb-0">Transactions</h3>
             </div>
             <div class="text-right">
-              <a href="{{ route('make-transaction') }}" class="btn btn-md btn-primary">New  Transaction</a>
+              <a href="{{ route('make-transaction') }}" class="btn btn-md btn-dark">New  Transaction</a>
             </div>
             <br> <!-- Light table -->
             <div class="table-responsive">
 
               <table class="table align-items-center table-bordered">
-                <thead class="bg-primary text-light">
+                <thead class="bg-info text-dark">
                     <tr class="align-items-center">
                     <th scope="col" data-sort="id">Customer Number</th>
                     <th scope="col" data-sort="id">Amount Received</th>

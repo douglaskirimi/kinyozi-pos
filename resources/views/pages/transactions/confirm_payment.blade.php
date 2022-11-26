@@ -16,12 +16,16 @@
           </div>
 
  <form action="{{ route('stkPush') }}" autocomplete="on" method="post">
-    
- <!-- <form action="{{ route('generateAccessToken') }}" autocomplete="on"> -->
+ <!-- <form action="{{ route('save.transaction') }}" autocomplete="on" method="post"> -->
     @csrf
 
     <div class="card">
         <div class="card-body">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="hidden" name="customer_id" value="{{ $customer_data->id }}">
+    </div>
+    </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -53,8 +57,8 @@
 
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputCategoryname">Served By : <b class="text-success"> {{ $data->empl_name }} </b></label>
-      <input type="hidden" name="served_by" value="{{ $data->empl_name }}">
+      <label for="inputCategoryname">Served By : <b class="text-success"> {{ auth()->user()->name }} </b></label>
+      <input type="hidden" name="served_by" value="{{ auth()->user()->name }}">
     </div>
     </div>
 

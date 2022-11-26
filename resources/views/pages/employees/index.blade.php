@@ -11,14 +11,16 @@
             <div class="card-header border-0">
               <h3 class="mb-0">Employees</h3>
             </div>
+
             <div class="text-right">
-              <a href="{{ route('display_add_form') }}" class="btn btn-md btn-primary">+ New Employee</a>
+              <a href="{{ route('display_add_form') }}" class="btn btn-md btn-dark">+ New Employee</a>
             </div>
+            
             <br> <!-- Light table -->
             <div class="table-responsive">
 
               <table class="table align-items-center table-bordered">
-                <thead class="bg-primary text-light">
+                <thead class="bg-info text-dark">
                     <tr class="align-items-center">
                     <th scope="col" data-sort="id">#</th>
                     <th scope="col" data-sort="id">Employee Name</th>
@@ -32,7 +34,7 @@
                 @foreach($employees as $employee)
                 <tbody class="list">
                  <td class="">{{ $employee->id }}</td>
-                 <td class="">{{ $employee->empl_name }}</td>
+                 <td class="">{{ $employee->name }}</td>
                  <td class="">{{ $employee->email }}</td>
                  <td class="">{{ $employee->gender }}</td>
                  <td class="">{{ $employee->phone }}</td>
@@ -48,7 +50,8 @@
                  <a class="dropdown-item" href="/empoyees/edit/{{ $employee->id }}"><i class="fa fa-edit" style="color: blue;background-color:transparent!important;font-size: 14px;">  Edit</i></a>
                  <a class="dropdown-item" href="/empoyees/delete/{{ $employee->id }}"><i class="fa fa-trash" style="color: red;font-size: 14px;">&nbsp;Remove</i></a>
                  <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                 </div>
+                 </div>      
+
                  </div>
                  </td>
                </tbody>

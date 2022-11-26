@@ -40,7 +40,7 @@
     
     <div class="form-row">
      <div class="form-group"> 
-        <input type="submit" class="form-control btn btn-primary" name="add_employee" id="inputSname" value="UPDATE">     
+        <input type="submit" class="form-control btn btn-info" name="add_employee" id="inputSname" value="UPDATE">     
     </div>
   </div>
     </div>

@@ -12,13 +12,13 @@
               <h3 class="mb-0">Services</h3>
             </div>
             <div class="text-right">
-              <a href="{{ route('add_service') }}" class="btn btn-md btn-primary">+ Add Service</a>
+              <a href="{{ route('add_service') }}" class="btn btn-md btn-dark">+ Add Service</a>
             </div>
             <br> <!-- Light table -->
             <div class="table-responsive">
 
               <table class="table align-items-center table-bordered">
-                <thead class="bg-primary text-light">
+                <thead class="bg-info text-dark">
                     <tr class="align-items-center">
                     <th scope="col" data-sort="id">#</th>
                     <th scope="col" data-sort="id">SERVICE NAME</th>

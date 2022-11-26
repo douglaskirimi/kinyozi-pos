@@ -9,7 +9,7 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
             <div class="text-right mt-4">
-              <a href="{{ route('show_employees') }}" class="btn btn-md btn-dark">All Employees</a>
+              <a href="{{ route('show_employees') }}" class="btn btn-md btn-dark"><span class="fa fa-share"></span> All Employees</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0 text-dark">New Employee</h3>
@@ -19,9 +19,9 @@
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
-      <label for="inputFname">Employee Name</label>
-      <input type="text" class="form-control" name="empl_name" id="empl_name" placeholder="First name..." value="{{ old('empl_name')}}"> 
-      @error('empl_name')
+      <label for="employee_name">Employee Name</label>
+      <input type="text" class="form-control" name="name" id="name" placeholder="Employee name..." value="{{ old('name')}}"> 
+      @error('name')
          <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
@@ -88,7 +88,7 @@
   </div>
 
   <div class="text-right">
-     <button class="btn btn-primary">+ ADD EMPLOYEE</button>
+     <button class="btn btn-info">+ ADD EMPLOYEE</button>
   </div>
 
     <!--  <div class=""> 

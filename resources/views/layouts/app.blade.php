@@ -23,11 +23,12 @@
 
         <link href="{{ asset('argon') }}/css/services_cards_style.css" rel="stylesheet">
         <!-- Argon CSS -->
+        <link type="text/css" href="{{ asset('argon') }}/css/custom.css" rel="stylesheet">
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     </head>
     <body class="d-flex flex-column min-vh-100">
         @include('sweetalert::alert')

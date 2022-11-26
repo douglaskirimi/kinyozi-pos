@@ -5710,7 +5710,7 @@ input[type='button'].btn-block
     word-wrap: break-word;
 
     border: 1px solid rgba(0, 0, 0, .05);
-    border-radius: .375rem; 
+    border-radius: .375rem!important; 
     background-color: #fff;
     background-clip: border-box;
 }
@@ -5735,6 +5735,8 @@ input[type='button'].btn-block
     padding: 1.5rem; 
 
     flex: 1 1 auto;
+    
+    border-radius: .375rem!important; 
 }
 
 .card-title
@@ -21878,3 +21880,4 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 
     height: 3px;
 }
+

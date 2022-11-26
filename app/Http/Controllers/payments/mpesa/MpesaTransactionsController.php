@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\payments\mpesa;
 
 use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -27,6 +28,7 @@ class MpesaTransactionsController extends Controller
         $curl_response = curl_exec($curl);
         $data=json_decode($curl_response);
         $access_token = $data->access_token;
+        // dd($access_token);
         return $access_token;  
     }
         public function lipaNaMpesaPassword()
@@ -59,7 +61,7 @@ public function stkPush(Request $request) {
         'PartyA' => '254758319193', //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-        'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
+        'CallBackURL' => 'https://webhook.site/ed464f9c-0d7a-412e-9a58-fde44e89a69d',
         'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
@@ -72,9 +74,11 @@ public function stkPush(Request $request) {
     $stkPullResponse = json_decode($curl_response);
     $stkResCode  = $stkPullResponse->ResponseCode;
 
+
     if ($stkResCode == 0) {
     Log::info($stkPullResponse->CustomerMessage);
-    return view('/pages.transactions.complete_Transaction',compact('data'))->with('data',$data);
+    // return view('pages.transactions.completeTransaction',compact('data'))->with('data',$data);
+    return redirect()->route('payment.complete')->with('data',$data);
 }
        else{
         } 
@@ -82,7 +86,8 @@ public function stkPush(Request $request) {
 }
 
  public function mpesaRes(Request $request) {
-        $response =json_decode($request->getContent(),true);
+// die("");
+       $response =json_decode($request->getContent(),true);
         $Item = $response['Body']['stkCallback']['CallbackMetadata']['Item'];
         $metadata = array(
             'MerchantRequestID' => $response['Body']['stkCallback']['MerchantRequestID'],
@@ -106,21 +111,22 @@ public function stkPush(Request $request) {
             $newTransaction->Status = "Success";
             $newTransaction->TransactionDate = $mpesaData['TransactionDate'];
             $newTransaction->PhoneNumber = $mpesaData['PhoneNumber'];
-            $m = $newTransaction->save();
+           $m = $newTransaction->save();
         
             if($m==1) {
-               Log::info("Transaction completed successfully!");
-               return redirect()->back()->with('feedback','Transaction completed successfully!');
+              Log::info("Transaction completed successfully!");
+              return response()->json("re");
             }
             else{
-                Log::info("Error");
+               Log::info("Error");
             }
     
         }
         elseif($mpesaData['ResultCode']==1) {
             Log::info("Error Occurred. Try again!");
-            return redirect()->back()->with('feedback','Transaction failed! We are sorry, try again!');
+            return   response()->json(array('feedback'=>'Transaction failed! We are sorry, try again!'));
         }
+    return response()->json("re");
 }
 
 

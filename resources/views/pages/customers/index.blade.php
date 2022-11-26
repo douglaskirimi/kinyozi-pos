@@ -12,13 +12,13 @@
               <h3 class="mb-0">Customers</h3>
             </div>
             <div class="text-right">
-              <a href="{{ route('customers_add_form') }}" class="btn btn-md btn-primary">+ Add Customer</a>
+              <a href="{{ route('customers_add_form') }}" class="btn btn-md btn-dark">+ Add Customer</a>
             </div>
             <br> <!-- Light table -->
             <div class="table-responsive">
 
               <table class="table align-items-center table-bordered">
-                <thead class="bg-primary text-light">
+                <thead class="bg-info text-dark">
                     <tr class="align-items-center">
                     <th scope="col" data-sort="id">#</th>
                     <th scope="col" data-sort="id">Customer Name</th>
@@ -37,6 +37,7 @@
                  <td class="">{{ $customer->gender }}</td>
                  <td class="">{{ $customer->phone }}</td>  
 
+
                  <td class="text-right">
                  <div class="dropdown">
                  <a class="btn btn-sm btn-icon-only text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +49,8 @@
                  <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                  </div>
                  </div>
-                 </td>
+                 </td>       
+
                </tbody>
                @endforeach
              </table>

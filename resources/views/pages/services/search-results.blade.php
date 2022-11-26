@@ -9,33 +9,35 @@
           <div class="card py-2 px-3">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Transactions</h3>
-            </div>
+              <h3 class="mb-0 text-info">Search Results [{{ $count }}]</h3>
+              <div>
+               @if (session()->has('response'))
+                 <h3 class="text-danger">{{ session('response') }}</h3>
+               @endif  
+           </div>
+        </div>
             <div class="text-right">
-              <a href="{{ route('make-transaction') }}" class="btn btn-md btn-dark">New  Transaction</a>
+              <a href="{{ route('show_services') }}" class="btn btn-md btn-dark">See All Services</a>
             </div>
             <br> <!-- Light table -->
             <div class="table-responsive">
 
               <table class="table align-items-center table-bordered">
-                <thead class="bg-info text-dark">
+                <thead class="bg-success text-dark">
                     <tr class="align-items-center">
-                    <th scope="col" data-sort="id">Transaction Id</th>
-                    <th scope="col" data-sort="id">Customer Id</th>
-                    <!-- <th scope="col" data-sort="id">Customer Name</th> -->
-                    <th scope="col" data-sort="id">Payment Number</th>
-                    <th scope="col" data-sort="id">Receipt Number</th>
-                    <th scope="col" data-sort="id">Amount</th>
+                    <th scope="col" data-sort="id">#</th>
+                    <th scope="col" data-sort="id">SERVICE NAME</th>
+                    <th scope="col" data-sort="id">SERVICE CATEGORY</th>
+                    <th scope="col" data-sort="id">SERVICE CHARGES</th>
                     <th scope="col" data-sort="action">Action</th>
                   </tr>
                 </thead>
-                @foreach($transactions as $transaction)
+                @foreach($services as $service)
                 <tbody class="list">
-                 <td class="">{{ $transaction->id }}</td>
-                 <td class="">{{ $transaction->customer_id }}</td>
-                 <td class="">{{ $transaction->payment_number }}</td>
-                 <td class="">{{ $transaction->receipt_number }}</td> 
-                 <td class="">{{ $transaction->amount }}</td> 
+                 <td class="">{{ $service->id }}</td>
+                 <td class="">{{ $service->service_name }}</td>
+                 <td class="">{{ $service->service_category }}</td>
+                 <td class="">{{ $service->service_charges }}</td> 
 
                  <td class="text-right">
                  <div class="dropdown">
@@ -44,9 +46,8 @@
                  </a>
 
                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="margin-right:-70px;margin-top:10px; background-color:transparent!important!">
-               <!--   <a class="dropdown-item" href="/transactions/edit/{{ $transaction->id }}"><i class="fa fa-edit" style="color: blue;background-color:transparent!important;font-size: 14px;">  Edit</i></a> -->
-                 <a class="dropdown-item" id="delete-confirm" href="/transactions/delete/{{ $transaction->id }}"><i class="fa fa-trash" style="color: red;font-size: 14px;">&nbsp;Remove</i></a>
-                 <a class="dropdown-item" id="receipt_print" href="/generate/receipt/{{ $transaction->id }}"><i class="fa fa-print" style="color: limegreen;font-size: 14px;">&nbsp;Print Receipt</i></a>
+                 <a class="dropdown-item" href="/services/edit/{{ $service->id }}"><i class="fa fa-edit" style="color: blue;background-color:transparent!important;font-size: 14px;">  Edit</i></a>
+                 <a class="dropdown-item" id="delete-confirm" href="/services/delete/{{ $service->id }}"><i class="fa fa-trash" style="color: red;font-size: 14px;">&nbsp;Remove</i></a>
                  <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                  </div>
                  </div>
@@ -54,9 +55,9 @@
                </tbody>
                @endforeach
              </table>
-               @forelse ($transactions as $transaction)
+               @forelse ($services as $service)
                @empty
-              <p class="text-center text-danger">No Transaction Records Found</p>
+              <p class="text-center text-danger">No records found matching your search!</p>
                @endforelse
            </div>
          </div>

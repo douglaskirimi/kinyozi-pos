@@ -6,10 +6,10 @@
     <div class="container-fluid mt--40">
       <div class="row">
         <div class="col">
-          <div class="card" style="background-color: transparent;padding: 8px 10px;">
+          <div class="card mt-2 py-6 px-6" style="">
             <!-- Card header -->
           <div class="text-right mt-4">
-              <a href="{{ route('all_transactions') }}" class="btn btn-md btn-dark">Transaction History</a>
+              <a href="{{ route('all_transactions') }}" class="btn btn-md btn-dark"><span class="fa fa-share"></span> View Transactions</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0 text-dark">New Transaction Record</h3>
@@ -31,21 +31,29 @@
       @error('name')
          <span class="text-danger">{{ $message }}</span>
       @enderror 
-      </select>
     </div>
 
-  <div class="form-group col-md-6">
+
+    <div class="form-group col-md-6">
+      <label for="inputCategoryname">Select Payment Mode <b class="text-danger">*</b></label>
+      <select class="form-control" name="" id="choose_customer" required>
+      <option value="">Cash</option>
+      <option value="">Lipa na Mpesa</option>
+      <option value="">Card</option>
+    </select>
+   </div>
+
+<!--   <div class="form-group col-md-6">
     <label for="inputCategoryname">Served By [Employee] <b class="text-danger"></b></label>
-    <select class="form-control" name="empl_name">
+    <select class="form-control" name="name">
       <option value=''>--- Select Employee ---</option>     @foreach($employees['data'] as $employee)  
-        <option value='{{ $employee->empl_name }}'>{{ $employee->empl_name }}</option>
+        <option value='{{ $employee->name }}'>{{ $employee->name }}</option>
       @endforeach
       </select>      
       @error('empl_name')
          <span class="text-danger">{{ $message }}</span>
       @enderror 
-      </select>  
-    </div>
+    </div> -->
   </div>
 
 
@@ -75,7 +83,7 @@
 
 
   <div class="text-left">
-     <button class="btn btn-primary">Record Transaction</button>
+     <button class="btn btn-info">Record Transaction</button>
   </div>
 
   <!-- Script -->

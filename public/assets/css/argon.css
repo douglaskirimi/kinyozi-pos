@@ -22856,7 +22856,7 @@ textarea[resize='horizontal']
 }
 .nav-link:hover
 {
-    color: #5e72e4;
+    color: red;
 }
 .nav-link i.ni
 {

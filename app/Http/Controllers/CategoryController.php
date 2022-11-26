@@ -17,7 +17,6 @@ class CategoryController extends Controller
     {
       $validatedData = $request->validate([
           'category_name' => 'required|unique:categories|max:255',
-          'category_thumbnail' => 'required',
         ]);
 
        if($request->file('category_thumbnail')){
@@ -25,13 +24,19 @@ class CategoryController extends Controller
             $filename= date('YmdHi').$file->getClientOriginalName();
             $file-> move(public_path('Categories Thumbnails'), $filename);
             $data['image']= $filename;
-        }
 
         $category = new Category;
         $category->category_name = $request->category_name;
         $category->category_thumbnail = $filename;
         $category->save();
+        }
 
+        else{
+        $category = new Category;
+        $category->category_name = $request->category_name;
+        // $category->category_thumbnail = $filename;
+        $category->save();            
+        }
 
        // Category::create($request->all());
        Alert::success('Add Category','Category added successfully');

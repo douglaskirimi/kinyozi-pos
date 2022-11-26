@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\payments\mpesa\MpesaTransactionsController;
 use App\Http\Controllers\payments\mpesa\MPESAResponsesController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,12 @@ Route::get('/Mpesa-payment/responses',[MpesaResponsesController::class, 'stkResp
 
 
 Route::post('/responses', [MpesaTransactionsController::class, 'mpesaRes'])->name('mpesaRes');
+
+
+
+// Temp
+Route::post('/save', [TransactionController::class, 'save'])->name('save');
+
 
 
 

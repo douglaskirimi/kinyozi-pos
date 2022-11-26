@@ -9,13 +9,13 @@
           <div class="card" style="background-color: transparent;padding: 8px 10px;">
             <!-- Card header -->
                <div class="text-right mt-4">
-              <a href="{{ route('show_services') }}" class="btn btn-md btn-dark">All Services</a>
+              <a href="{{ route('show_services') }}" class="btn btn-md btn-dark"><span class="fa fa-share"></span> All Services</a>
             </div>
             <div class="bg-transparent my-2 mt-4 mb-4">
               <h3 class="mb-0 text-dark">New Service</h3>
           </div>
 
- <form action="{{ route('add_service') }}" method="POST" autocomplete="on">
+ <form action="{{ route('create_service') }}" method="POST" autocomplete="on">
     @csrf
     <div class="form-row">
      <div class="form-group col-md-6">
@@ -54,7 +54,7 @@
   </div>
 
   <div class="text-right">
-     <button class="btn btn-primary">+ ADD SERVICE</button>
+     <button class="btn btn-info">+ ADD SERVICE</button>
   </div>
     </div>
 </form>       
