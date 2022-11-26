@@ -91,7 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
  // Transactions Pages Routes
     Route::get('/mpesa_payments','App\Http\Controllers\TransactionController@index2')->name('mpesa_payments');
 
-   Route::get('/transactions/list','App\Http\Controllers\TransactionController@index')->name('all_transactions');
+   Route::get('/transactions/list','App\Http\Controllers\TransactionController@index2')->name('all_transactions');
 
    Route::get('/transactions','App\Http\Controllers\TransactionController@new_transaction')->name('make-transaction');
 

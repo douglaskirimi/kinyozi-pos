@@ -61,7 +61,7 @@ public function stkPush(Request $request) {
         'PartyA' => '254758319193', //$customer_payment_number, // replace this with your phone number
         'PartyB' => 174379,
         'PhoneNumber' => $customer_payment_number, // replace this with your phone number
-        'CallBackURL' => 'https://webhook.site/ed464f9c-0d7a-412e-9a58-fde44e89a69d',
+        'CallBackURL' => 'https://kinyozi-point-of-sale.herokuapp.com/api/responses',
         'AccountReference' => "The Glitters Barbershop",
         'TransactionDesc' => "Testing stk push on sandbox"
     ];
@@ -115,7 +115,7 @@ public function stkPush(Request $request) {
         
             if($m==1) {
               Log::info("Transaction completed successfully!");
-              return response()->json("re");
+              return response()->json("success");
             }
             else{
                Log::info("Error");
@@ -126,7 +126,7 @@ public function stkPush(Request $request) {
             Log::info("Error Occurred. Try again!");
             return   response()->json(array('feedback'=>'Transaction failed! We are sorry, try again!'));
         }
-    return response()->json("re");
+    return response()->json("retry!");
 }
 
 
