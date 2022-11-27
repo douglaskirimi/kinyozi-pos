@@ -24,7 +24,8 @@
                     <th scope="col" data-sort="id">Amount Received</th>
                     <th scope="col" data-sort="id">Mpesa Receipt Number</th>
                     <th scope="col" data-sort="id">Status</th>
-                    <th scope="col" data-sort="id">Transaction Date</th>                    <th scope="col" data-sort="action">Action</th>
+                    <th scope="col" data-sort="id">Transaction Date</th>  
+                    <th scope="col" data-sort="action">Action</th>
                   </tr>
                 </thead>
                 @foreach($transactions as $transaction)
@@ -33,7 +34,7 @@
                  <td class="">{{ $transaction->Amount }}</td>
                  <td class="">{{ $transaction->MpesaReceiptNumber }}</td>
                  <td class="text-success">{{ $transaction->Status }}</td>
-                 <td class="">{{ $transaction->created_at }}</td> 
+                 <td class="">{{ $transaction->TransactionDate }}</td> 
 
                  <td class="text-right">
                  <div class="dropdown">

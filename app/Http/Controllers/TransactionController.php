@@ -27,7 +27,7 @@ class TransactionController extends Controller
     }
 
     public function index2() {
-         $transactions=DB::table('mpesa_payments')->select('id','PhoneNumber','ResultDesc','MpesaReceiptNumber','Amount','Status','created_at')->distinct()->get();
+         $transactions=DB::table('mpesa_payments')->select('id','PhoneNumber','ResultDesc','MpesaReceiptNumber','Amount','Status','TransactionDate','created_at')->distinct()->get();
       return view('pages.transactions.mpesa_payments')->with('transactions', $transactions);
     }
 

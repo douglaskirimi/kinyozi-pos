@@ -109,7 +109,13 @@ public function stkPush(Request $request) {
             $newTransaction->Amount = $mpesaData['Amount'];
             $newTransaction->MpesaReceiptNumber = $mpesaData['MpesaReceiptNumber'].rand(0,9999);            
             $newTransaction->Status = "Success";
-            $newTransaction->TransactionDate = $mpesaData['TransactionDate'];
+
+           $transaction_date = $mpesaData['TransactionDate'];
+           $formatedDateTime = date("Y-m-d", strtotime($transaction_date)); 
+
+            $newTransaction->TransactionDate = $formatedDateTime;
+
+            die($newTransaction->TransactionDate);
             $newTransaction->PhoneNumber = $mpesaData['PhoneNumber'];
            $m = $newTransaction->save();
         
