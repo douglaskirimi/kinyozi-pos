@@ -115,7 +115,7 @@ public function stkPush(Request $request) {
 
             $newTransaction->TransactionDate = $formatedDateTime;
 
-            die($newTransaction->TransactionDate);
+            // die($newTransaction->TransactionDate);
             $newTransaction->PhoneNumber = $mpesaData['PhoneNumber'];
            $m = $newTransaction->save();
         
