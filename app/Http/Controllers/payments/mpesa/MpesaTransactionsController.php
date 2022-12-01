@@ -30,10 +30,8 @@ class MpesaTransactionsController extends Controller
         if (curl_errno($curl)) { 
             print curl_error($curl); 
         } 
-
-        // $curl_response = curl_exec($curl);
+        
         $data=json_decode(curl_exec($curl),true);
-        dd($data);
         $access_token = $data->access_token;
         // dd($access_token);
         curl_close($curl);
