@@ -27,7 +27,6 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $curl_response = curl_exec($curl);
         $data=json_decode($curl_response);
-        // die($curl_response);
         $access_token = $data->access_token;
         // dd($access_token);
         return $access_token;  
@@ -43,6 +42,23 @@ class MpesaTransactionsController extends Controller
     }
 
 public function stkPush(Request $request) {
+        //Generate access token
+        $consumer_key=env('MPESA_CONSUMER_KEY');
+        $consumer_secret=env('MPESA_CONSUMER_SECRET');
+        $credentials = base64_encode(env('MPESA_CONSUMER_KEY').":".env('MPESA_CONSUMER_SECRET'));
+        $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Basic ".$credentials));
+        curl_setopt($curl, CURLOPT_HEADER,false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $curl_response = curl_exec($curl);
+        $data=json_decode($curl_response);
+        $access_token = $data->access_token;
+
+// ---------------------------------------------------------
+
     $phone = ltrim($request->mpesa_number,0);
     $customer_payment_number = '254' . $phone;
     $service_fees = $request->service_fees;
@@ -51,7 +67,7 @@ public function stkPush(Request $request) {
     $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generateAccessToken()));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$access_token));
     $curl_post_data = [
         //Fill in the request parameters with valid values
         'BusinessShortCode' => 174379,
