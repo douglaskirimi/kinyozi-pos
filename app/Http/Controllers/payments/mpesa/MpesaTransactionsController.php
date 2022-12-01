@@ -28,7 +28,7 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         if (curl_errno($curl)) { 
-            print curl_error($ch); 
+            print curl_error($curl); 
         } 
 
         // $curl_response = curl_exec($curl);
