@@ -18,19 +18,20 @@ class MpesaTransactionsController extends Controller
         $consumer_key=env('MPESA_CONSUMER_KEY');
         $consumer_secret=env('MPESA_CONSUMER_SECRET');
         $credentials = base64_encode(env('MPESA_CONSUMER_KEY').":".env('MPESA_CONSUMER_SECRET'));
+        // dd($credentials);
         $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Basic ".$credentials));
-        curl_setopt($curl, CURLOPT_HEADER,false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_HEADER,0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // $curl_response = curl_exec($curl);
         $data=json_decode(curl_exec($curl));
-        // curl_close($curl);
-        // dd($data);
+        dd($data);
         $access_token = $data->access_token;
         // dd($access_token);
+        curl_close($curl);
         return $access_token;  
     }
         public function lipaNaMpesaPassword()
