@@ -231,18 +231,21 @@ return redirect()->route('receive_stk_response');
      public function generatePDF($id)
       {
 
-        $receiptDetails=DB::table('transactions')->select('id','cust_name','service_offered','customer_id','payment_number','amount','served_by','receipt_number','created_at')->where('id',$id)->get();
+        // $receiptDetails=DB::table('transactions')->select('id','cust_name','service_offered','customer_id','payment_number','amount','served_by','receipt_number','created_at')->where('id',$id)->get();
+
+        $receiptDetails=DB::table('mpesa_payments')->select('id','PhoneNumber','Amount','MpesaReceiptNumber','TransactionDate')->where('id',$id)->get();
+
 
         $data = [
             'title' => 'Glitters Barbershop',
             'date' => date('m/d/Y'),
-            'customer_name' => $receiptDetails[0]->cust_name,
-            'service_offered' => $receiptDetails[0]->service_offered,
-            'payment_number' => $receiptDetails[0]->payment_number,
-            'amount' => $receiptDetails[0]->amount,
-            'served_by' => $receiptDetails[0]->served_by,
-            'receipt_number' => $receiptDetails[0]->receipt_number,
-            'transaction_date' => $receiptDetails[0]->created_at            
+            'customer_name' => 'CustomerA',
+            'service_offered' => 'Special Cut',
+            'payment_number' => $receiptDetails[0]->PhoneNumber,
+            'amount' => $receiptDetails[0]->Amount,
+            'served_by' => 'Douglas',
+            'receipt_number' => $receiptDetails[0]->MpesaReceiptNumber,
+            'transaction_date' => $receiptDetails[0]->TransactionDate            
         ];
           
         $pdf = PDF::loadView('pages.transactions.pdfgenerator', $data);

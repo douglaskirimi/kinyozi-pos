@@ -122,7 +122,7 @@ public function stkPush(Request $request) {
         
             if($m==1) {
               Log::info("Transaction completed successfully!");
-              return response()->json("success");
+              return response()->json($mpesaData);
             }
             else{
                Log::info("Error");
