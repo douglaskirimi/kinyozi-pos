@@ -33,7 +33,6 @@ class MpesaTransactionsController extends Controller
 
         // $curl_response = curl_exec($curl);
         $data=json_decode(curl_exec($curl),true);
-        dd($data);
         $access_token = $data->access_token;
         // dd($access_token);
         curl_close($curl);
