@@ -15,6 +15,7 @@ use App\Http\Requests\TransactionRequestUpdator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Illuminate\Pagination\Paginator;
 
 class TransactionController extends Controller
 {
@@ -27,7 +28,7 @@ class TransactionController extends Controller
     }
 
     public function index2() {
-         $transactions=DB::table('mpesa_payments')->select('id','PhoneNumber','ResultDesc','MpesaReceiptNumber','Amount','Status','TransactionDate','created_at')->distinct()->get();
+         $transactions=DB::table('mpesa_payments')->select('id','PhoneNumber','ResultDesc','MpesaReceiptNumber','Amount','Status','TransactionDate','created_at')->distinct()->paginate(10);
       return view('pages.transactions.mpesa_payments')->with('transactions', $transactions);
     }
 

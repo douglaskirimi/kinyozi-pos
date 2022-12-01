@@ -90,7 +90,7 @@
 <body>
 <div class="head-title">
     <h1 class="text-center m-0 p-0">{{ $title }}</h1>
-    <h3 class="text-center m-0 p-0 mpesa-color">RECEIPT {{ $receipt_number }}</h3>
+    <h3 class="text-center m-0 p-0 text-muted">Get cool today with us!</h3>
 </div>
 <div class="add-detail mt-10">
     <div class="w-50 float-left mt-10">

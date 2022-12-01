@@ -52,11 +52,12 @@
                  </td>
                </tbody>
                @endforeach
-             </table>
+            </table>
                @forelse ($transactions as $transaction)
                @empty
               <p class="text-center text-danger">No Transaction Records Found</p>
                @endforelse
+            {!! $transactions->links() !!}
            </div>
          </div>
          <script type="text/javascript">
