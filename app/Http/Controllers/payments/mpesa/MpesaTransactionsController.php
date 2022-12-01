@@ -25,9 +25,10 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_HEADER,false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $curl_response = curl_exec($curl);
-        $data=json_decode($curl_response,true);
-        curl_close($curl);
+        // $curl_response = curl_exec($curl);
+        $data=json_decode(curl_exec($curl));
+        // curl_close($curl);
+        // dd($data);
         $access_token = $data->access_token;
         // dd($access_token);
         return $access_token;  
