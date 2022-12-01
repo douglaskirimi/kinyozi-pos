@@ -57,7 +57,7 @@
                @empty
               <p class="text-center text-danger">No Transaction Records Found</p>
                @endforelse
-            {!! $transactions->links() !!}
+            <!-- {!! $transactions->links() !!} -->
            </div>
          </div>
          <script type="text/javascript">
