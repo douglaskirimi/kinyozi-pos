@@ -24,8 +24,13 @@ class MpesaTransactionsController extends Controller
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Basic ".$credentials));
         curl_setopt($curl, CURLOPT_HEADER,0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        if (curl_errno($curl)) { 
+            print curl_error($ch); 
+        } 
+
         // $curl_response = curl_exec($curl);
         $data=json_decode(curl_exec($curl));
         dd($data);
