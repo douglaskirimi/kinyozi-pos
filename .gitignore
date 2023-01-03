@@ -1,17 +1,17 @@
-/node_modules
-/public/hot
-/public/storage
+# /node_modules
+# /public/hot
+# /public/storage
 # /public/assets/vendor
 # /public/argon/vendor
-/storage/*.key
+# /storage/*.key
 # /vendor
-.env
-.env.backup
-.phpunit.result.cache
-docker-compose.override.yml
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-/.idea
-/.vscode
+# .env
+# .env.backup
+# .phpunit.result.cache
+# docker-compose.override.yml
+# Homestead.json
+# Homestead.yaml
+# npm-debug.log
+# yarn-error.log
+# /.idea
+# /.vscode
